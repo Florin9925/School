@@ -28,12 +28,12 @@ namespace School.Admin
 
         private void buttonEditTeacher_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new EditStudentUserControl());
+            Switcher.Switch(new EditTeacherUserControl());
         }
 
         private void buttonEditStudent_Click(object sender, RoutedEventArgs e)
         {
-
+            Switcher.Switch(new EditStudentUserControl());
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)

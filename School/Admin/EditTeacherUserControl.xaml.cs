@@ -21,5 +21,15 @@ namespace School.Admin
         {
             InitializeComponent();
         }
+
+        private void logOut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

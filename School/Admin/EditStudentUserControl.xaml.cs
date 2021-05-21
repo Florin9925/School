@@ -1,6 +1,7 @@
 ﻿using School.Log_in;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,11 @@ namespace School.Admin
     /// </summary>
     public partial class EditStudentUserControl : UserControl
     {
+        ObservableCollection<Person> Persons { get; set; }
         public EditStudentUserControl()
         {
             InitializeComponent();
+            Persons = new ObservableCollection<Person>();
         }
 
         private void back_Click(object sender, RoutedEventArgs e)
