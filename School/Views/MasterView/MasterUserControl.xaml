@@ -24,17 +24,41 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <Menu IsMainMenu="True" Grid.ColumnSpan="8">
+        <StackPanel 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2">
+            <Menu 
+                IsMainMenu="True" 
+                Grid.ColumnSpan="8">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Teacher" Command="{Binding OpenUserControlCommand}" CommandParameter="1"/>
-                    <MenuItem Header="_Log out" Command="{Binding OpenUserControlCommand}" CommandParameter="2"/>
-                    <MenuItem Header="_Exit" Command="{Binding OpenUserControlCommand}" CommandParameter="3"/>
+                    <MenuItem 
+                        Header="_Teacher" 
+                        Command="{Binding OpenUserControlCommand}" 
+                        CommandParameter="1"/>
+                    <MenuItem 
+                        Header="_Log out" 
+                        Command="{Binding OpenUserControlCommand}" 
+                        CommandParameter="2"/>
+                    <MenuItem
+                        Header="_Exit" 
+                        Command="{Binding OpenUserControlCommand}"
+                        CommandParameter="3"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
 
-        <TextBlock  Grid.Row="1" Grid.ColumnSpan="2" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Master"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Text="Master" 
+            FontSize="20" 
+            TextAlignment="Center"
+            FontStretch="ExtraCondensed"
+            Width="Auto"/>
 
     </Grid>
 </UserControl>

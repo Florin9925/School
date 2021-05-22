@@ -26,56 +26,275 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
-            <Menu IsMainMenu="True" Grid.ColumnSpan="8">
+        <StackPanel 
+            Grid.Row="0"
+            Grid.ColumnSpan="4">
+            <Menu 
+                IsMainMenu="True" 
+                Grid.ColumnSpan="8">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Back" Command="{Binding OpenUserControlCommand}" CommandParameter="1"/>
-                    <MenuItem Header="_Log out" Command="{Binding OpenUserControlCommand}" CommandParameter="2"/>
-                    <MenuItem Header="_Exit" Command="{Binding OpenUserControlCommand}" CommandParameter="3"/>
+                    <MenuItem
+                        Header="_Back"
+                        Command="{Binding OpenUserControlCommand}" 
+                        CommandParameter="1"/>
+                    <MenuItem
+                        Header="_Log out" 
+                        Command="{Binding OpenUserControlCommand}"
+                        CommandParameter="2"/>
+                    <MenuItem
+                        Header="_Exit" 
+                        Command="{Binding OpenUserControlCommand}"
+                        CommandParameter="3"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
 
-        <TextBlock  Grid.Row="1" Grid.ColumnSpan="4" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Text="List of students:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
-        <ListBox Grid.Row ="2" Grid.ColumnSpan="4" Name="listStudents" ItemsSource="{Binding Students}" Width="600" Height="250">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <TextBox Name="txtId" Text="{Binding Id}" Height="31" Width="50"/>
-                        <TextBox Name="txtFirstName"  Text="{Binding FirstName}" Height="31" Width="120"/>
-                        <TextBox Name="txtLastName" Text="{Binding LastName}" Height="31" Width="120"/>
-                        <TextBox Name="txtUsername" Text="{Binding Username}" Height="31" Width="120"/>
-                        <TextBox Name="txtPassword" Text="{Binding Password}" Height="31" Width="120"/>
-                        <TextBox Name="txtIdClass" Text="{Binding IdClass}" Height="31" Width="120"/>
-                    </WrapPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.ColumnSpan="4" 
+            Height="32" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            Text="List of students:" 
+            FontSize="20"
+            TextAlignment="Center"
+            FontStretch="ExtraCondensed"
+            Width="Auto"/>
 
-        <StackPanel Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock  Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Text="Id:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
-            <TextBlock  Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Text="First name"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
-            <TextBlock  Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Text="Last name:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
-            <TextBlock  Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Text="Username:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
-            <TextBlock  Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Text="Password:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
-            <TextBlock  Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Text="Id class:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
+        <WrapPanel
+            Grid.Row ="2" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="4" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="50" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="First name" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Last name" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Username" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Password" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Id class" 
+                    Height="31" 
+                    Width="50" 
+                    BorderThickness="0"/>
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.ColumnSpan="4" 
+            Name="listStudents"
+            ItemsSource="{Binding Students}" 
+            Width="550"
+            Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox 
+                            Name="txtId"
+                            Text="{Binding Id}"
+                            Height="31"
+                            Width="50"/>
+                            <TextBox 
+                            Name="txtFirstName" 
+                            Text="{Binding FirstName}" 
+                            Height="31" 
+                            Width="100"/>
+                            <TextBox 
+                            Name="txtLastName"
+                            Text="{Binding LastName}" 
+                            Height="31" 
+                            Width="100"/>
+                            <TextBox 
+                            Name="txtUsername" 
+                            Text="{Binding Username}"
+                            Height="31"
+                            Width="100"/>
+                            <TextBox 
+                            Name="txtPassword" 
+                            Text="{Binding Password}"
+                            Height="31"
+                            Width="100"/>
+                            <TextBox 
+                            Name="txtIdClass" 
+                            Text="{Binding IdClass}"
+                            Height="31"
+                            Width="50"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+        <StackPanel 
+            Grid.Row="3" 
+            Grid.Column="0" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <TextBlock 
+                Height="32" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Margin="0,0,0,0" 
+                Text="Id:" 
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock 
+                Height="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,25,0,0" 
+                Text="First name" 
+                FontSize="20" 
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock
+                Height="32"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Margin="0,25,0,0" 
+                Text="Last name:" 
+                FontSize="20"
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock 
+                Height="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,25,0,0"
+                Text="Username:" 
+                FontSize="20" 
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock
+                Height="32"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Margin="0,25,0,0" 
+                Text="Password:" 
+                FontSize="20"
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock  
+                Height="32" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,25,0,0"
+                Text="Id class:"
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Name="textBoxId" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Width="300" Height="32" />
-            <TextBox Name="textBoxFirstName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Width="300" Height="32" />
-            <TextBox Name="textBoxLastName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Width="300" Height="32" />
-            <TextBox Name="textBoxUsername" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Width="300" Height="32" />
-            <TextBox Name="textBoxPassword" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Width="300" Height="32" />
-            <TextBox Name="textBoxIdClass" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,25,0,0" Width="300" Height="32" />
+        <StackPanel 
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <TextBox
+                Name="textBoxId"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,0,0,0"
+                Width="300"
+                Height="32" />
+            <TextBox 
+                Name="textBoxFirstName"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Margin="0,25,0,0"
+                Width="300"
+                Height="32" />
+            <TextBox
+                Name="textBoxLastName" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,25,0,0" 
+                Width="300" 
+                Height="32" />
+            <TextBox 
+                Name="textBoxUsername" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,25,0,0"
+                Width="300"
+                Height="32" />
+            <TextBox 
+                Name="textBoxPassword" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,25,0,0"
+                Width="300"
+                Height="32" />
+            <TextBox 
+                Name="textBoxIdClass" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,25,0,0"
+                Width="300"
+                Height="32" />
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Edit student" Height="25" Margin="0,0,0,0"  Width="150" Command="{Binding OpenUserControlCommand}" CommandParameter="4"/>
-            <Button Content="Delete student" Height="25" Margin="0,30,0,0"  Width="150" Command="{Binding OpenUserControlCommand}" CommandParameter="5"/>
-            <Button Content="Add students" Height="25" Margin="0,30,0,0"  Width="150" Command="{Binding OpenUserControlCommand}" CommandParameter="6"/>
-            <Button Content="Save students" Height="25" Margin="0,30,0,0"  Width="150" Command="{Binding OpenUserControlCommand}" CommandParameter="7" Visibility ="Hidden"/>
+        <StackPanel 
+            Grid.Row="3"
+            Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button 
+                Content="Edit student"
+                Height="25"
+                Margin="0,0,0,0"
+                Width="150" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="4"/>
+            <Button 
+                Content="Delete student" 
+                Height="25"
+                Margin="0,30,0,0"
+                Width="150" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="5"/>
+            <Button 
+                Content="Add students"
+                Height="25" 
+                Margin="0,30,0,0" 
+                Width="150"
+                Command="{Binding OpenUserControlCommand}" 
+                CommandParameter="6"/>
+            <Button 
+                Content="Save students"
+                Height="25"
+                Margin="0,30,0,0" 
+                Width="150" 
+                Command="{Binding OpenUserControlCommand}" 
+                CommandParameter="7" 
+                Visibility ="Hidden"/>
         </StackPanel>
 
     </Grid>

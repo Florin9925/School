@@ -135,9 +135,9 @@
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UsersControl\Admin\AdminUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Admin\EditClassSubjectUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\Admin\EditStudentUserControlVM.cs" />
-    <Compile Include="ViewModels\UsersControl\Admin\EditSubjectUserControlVM.cs" />
-    <Compile Include="ViewModels\UsersControl\Admin\EditTeacherUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Admin\EditTeacherSubjectUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\LogIn\LogInUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\Master\MasterUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\Student\StudentUserControlVM.cs" />
@@ -145,14 +145,14 @@
     <Compile Include="Views\AdminView\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AdminView\EditClassSubjectUserControl.xaml.cs">
+      <DependentUpon>EditClassSubjectUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdminView\EditStudentUserControl.xaml.cs">
       <DependentUpon>EditStudentUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdminView\EditSubjectUserControl.xaml.cs">
-      <DependentUpon>EditSubjectUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AdminView\EditTeacherUserControl.xaml.cs">
-      <DependentUpon>EditTeacherUserControl.xaml</DependentUpon>
+    <Compile Include="Views\AdminView\EditTeacherSubjectUserControl.xaml.cs">
+      <DependentUpon>EditTeacherSubjectUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogInView\LogInUserControl.xaml.cs">
       <DependentUpon>LogInUserControl.xaml</DependentUpon>
@@ -175,15 +175,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AdminView\EditClassSubjectUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AdminView\EditStudentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AdminView\EditSubjectUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AdminView\EditTeacherUserControl.xaml">
+    <Page Include="Views\AdminView\EditTeacherSubjectUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -24,22 +24,86 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <Menu IsMainMenu="True" Grid.ColumnSpan="8">
+        <StackPanel 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2">
+            <Menu 
+                IsMainMenu="True" 
+                Grid.ColumnSpan="8">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Exit" Command="{Binding OpenUserControlCommand}" CommandParameter="1"/>
+                    <MenuItem 
+                        Header="_Exit" 
+                        Command="{Binding OpenUserControlCommand}" 
+                        CommandParameter="1"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
 
 
-        <TextBlock  Grid.Row="1" Grid.ColumnSpan="2" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Name="LoginHeading" Text="Login:"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="71"/>
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Text="Login:"  
+            FontSize="20" 
+            TextAlignment="Center" 
+            FontStretch="ExtraCondensed"  
+            Width="71"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Height="23" HorizontalAlignment="Center" Margin="0,50,0,0" Name="textBlock1" Text="Username" VerticalAlignment="Top" Width="67" />
-        <TextBlock Grid.Row="2" Grid.Column="0"  Height="23" HorizontalAlignment="Center" Margin="10,100,0,0" Name="textBlock2" Text="Password" VerticalAlignment="Top" Width="77" />
-        <TextBox Grid.Row="2" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,50,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="247" />
-        <PasswordBox Grid.Row="2" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="0,100,0,0" Name="passwordBox" VerticalAlignment="Top" Width="247" />
-        <Button Grid.Row="3" Grid.Column="1" Content="Login" Height="23" HorizontalAlignment="Left" Margin="0,0,0,0" Name="buttonLogIn" VerticalAlignment="Top" Width="104" Command="{Binding OpenUserControlCommand}" CommandParameter="2" >
+        <TextBlock
+            Grid.Row="2" 
+            Grid.Column="0" 
+            Height="23"
+            HorizontalAlignment="Center" 
+            Margin="0,50,0,0" 
+            Text="Username" 
+            VerticalAlignment="Top"
+            Width="67" />
+        
+        <TextBlock 
+            Grid.Row="2" 
+            Grid.Column="0"  
+            Height="23" 
+            HorizontalAlignment="Center"
+            Margin="10,100,0,0" 
+            Text="Password" 
+            VerticalAlignment="Top" 
+            Width="77" />
+        
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Height="23" 
+            HorizontalAlignment="Left"
+            Margin="0,50,0,0"
+            Name="textBoxEmail" 
+            VerticalAlignment="Top" 
+            Width="247" />
+        
+        <PasswordBox 
+            Grid.Row="2" 
+            Grid.Column="1" 
+            Height="23" 
+            HorizontalAlignment="Left" 
+            Margin="0,100,0,0" 
+            Name="passwordBox" 
+            VerticalAlignment="Top" 
+            Width="247" />
+        <Button 
+            Grid.Row="3"
+            Grid.Column="1"
+            Content="Login" 
+            Height="23" 
+            HorizontalAlignment="Left"
+            Margin="0,0,0,0"
+            Name="buttonLogIn" 
+            VerticalAlignment="Top"
+            Width="104"
+            Command="{Binding OpenUserControlCommand}" 
+            CommandParameter="2" >
         </Button>
 
     </Grid>

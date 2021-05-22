@@ -10,8 +10,9 @@ using System.Windows.Input;
 
 namespace School.ViewModels.UsersControl.Admin
 {
-    class EditStudentUserControlVM
+    class EditClassSubjectUserControlVM
     {
+
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand
         {
@@ -40,36 +41,68 @@ namespace School.ViewModels.UsersControl.Admin
                     Switcher.pageSwitcher.Close();
                     break;
                 case "4":
-                    EditStudent();
+                    EditClass();
                     break;
                 case "5":
-                    DeleteStudent();
+                    DeleteClass();
                     break;
                 case "6":
-                    AddStudent();
+                    AddClass();
                     break;
                 case "7":
-                    SaveStudent();
+                    SaveClass();
+                    break;
+                case "8":
+                    EditSubject();
+                    break;
+                case "9":
+                    DeleteSubject();
+                    break;
+                case "10":
+                    AddSubject();
+                    break;
+                case "11":
+                    SaveSubject();
                     break;
             }
         }
 
-        private void SaveStudent()
+        private void SaveSubject()
         {
             throw new NotImplementedException();
         }
 
-        private void AddStudent()
+        private void AddSubject()
         {
             throw new NotImplementedException();
         }
 
-        private void DeleteStudent()
+        private void DeleteSubject()
         {
             throw new NotImplementedException();
         }
 
-        private void EditStudent()
+        private void EditSubject()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SaveClass()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddClass()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteClass()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditClass()
         {
             throw new NotImplementedException();
         }

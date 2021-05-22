@@ -15,11 +15,16 @@ using System.Windows.Shapes;
 
 namespace School.Views.AdminView
 {
-    public partial class EditTeacherUserControl : UserControl
+    /// <summary>
+    /// Interaction logic for EditClassSubjectUserControl.xaml
+    /// </summary>
+    public partial class EditClassSubjectUserControl : UserControl
     {
-        public EditTeacherUserControl()
+        public EditClassSubjectUserControl()
         {
             InitializeComponent();
         }
+
+        
     }
 }

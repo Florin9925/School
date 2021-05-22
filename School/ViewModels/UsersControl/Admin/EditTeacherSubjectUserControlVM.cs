@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace School.ViewModels.UsersControl.Admin
 {
-    class EditTeacherUserControlVM
+    class EditTeacherSubjectUserControlVM
     {
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand
@@ -40,18 +40,70 @@ namespace School.ViewModels.UsersControl.Admin
                     Switcher.pageSwitcher.Close();
                     break;
                 case "4":
-                    // edit teacher
+                    EditTeacher();
                     break;
                 case "5":
-                    // delete teacher
+                    DeleteTeacher();
                     break;
                 case "6":
-                    // add teacher
+                    AddTeacher();
                     break;
                 case "7":
-                    // save teacher
+                    SaveTeacher();
+                    break;
+                case "8":
+                    EditSubject();
+                    break;
+                case "9":
+                    DeleteSubject();
+                    break;
+                case "10":
+                    AddSubject();
+                    break;
+                case "11":
+                    SaveSubject();
                     break;
             }
+        }
+
+        public void AddTeacher()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteTeacher()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditTeacher()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveTeacher()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSubject()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSubject()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditSubject()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveSubject()
+        {
+            throw new NotImplementedException();
         }
     }
 }
