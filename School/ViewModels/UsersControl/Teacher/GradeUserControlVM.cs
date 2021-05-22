@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace School.ViewModels.UsersControl.Teacher
 {
-    class TeacherUserControlVM
+    class GradeUserControlVM
     {
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand
@@ -32,28 +32,43 @@ namespace School.ViewModels.UsersControl.Teacher
             switch (nr)
             {
                 case "1":
-                    Switcher.Switch(new MasterUserControl());
+                    Switcher.Switch(new TeacherUserControl());
                     break;
                 case "2":
-                    Switcher.Switch(new LogInUserControl());
+                    Switcher.Switch(new MasterUserControl());
                     break;
                 case "3":
-                    Switcher.pageSwitcher.Close();
+                    Switcher.Switch(new LogInUserControl());
                     break;
                 case "4":
-                    Switcher.Switch(new AbsenceUserControl());
+                    Switcher.pageSwitcher.Close();
                     break;
                 case "5":
-                    Switcher.Switch(new GradeUserControl());
+                    CancelsGrade();
                     break;
                 case "6":
-                    Switcher.Switch(new SituationUserControl());
+                    AddGrade();
                     break;
                 case "7":
-                    Switcher.Switch(new MaterialUserControl());
+                    SaveGrade();
                     break;
 
             }
+        }
+
+        private void SaveGrade()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddGrade()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CancelsGrade()
+        {
+            throw new NotImplementedException();
         }
     }
 }

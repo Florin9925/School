@@ -15,7 +15,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="250"></RowDefinition>
             <RowDefinition Height="200"></RowDefinition>
             <RowDefinition Height="200"></RowDefinition>
@@ -153,13 +153,18 @@
                 <Label 
                     Content="Name subject" 
                     Height="31" 
-                    Width="150" 
+                    Width="120" 
                     BorderThickness="0"/>
 
                 <Label 
                     Content="Tearm" 
                     Height="31" 
-                    Width="120" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Id Teacher" 
+                    Height="31" 
+                    Width="70" 
                     BorderThickness="0"/>
             </WrapPanel>
             <ListBox 
@@ -188,6 +193,11 @@
                             Text="{Binding Tearm}" 
                             Height="31" 
                             Width="120"/>
+                            <TextBox 
+                            Name="txtIdTeacher" 
+                            Text="{Binding IdTeacher}" 
+                            Height="31" 
+                            Width="70"/>
                         </WrapPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -370,6 +380,16 @@
                 TextAlignment="Center"
                 FontStretch="ExtraCondensed"
                 Width="Auto"/>
+            <TextBlock  
+                Height="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,10,0,0"
+                Text="Id teacher:" 
+                FontSize="20"
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed"
+                Width="Auto"/>
 
 
         </StackPanel>
@@ -397,6 +417,13 @@
 
             <TextBox
                 Name="textBoxTerm" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Margin="0,10,0,0"
+                Width="300" 
+                Height="32" />
+            <TextBox
+                Name="textBoxIdTeacher" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 Margin="0,10,0,0"
