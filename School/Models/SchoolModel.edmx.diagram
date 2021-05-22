@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="089b0f3881e4432289ac50f3d7a181e8" Name="Diagram1" ZoomLevel="62">
+        <EntityTypeShape EntityType="SchoolModel.Absence" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Admin" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Class" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Class_Master" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Class_Subject" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Class_Teacher" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Grade" Width="1.5" PointX="13.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Material" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Person" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Situation" Width="1.5" PointX="11.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Student" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Subject" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Teacher" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Term" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SchoolModel.FK_Absence_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.C_FK_admin_person" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Class_Subject_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Student_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Class_Master_Class_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Classmaster_Class_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Class_Subject_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Material_Class_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Situation_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Classmaster_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Grade_Situation" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Material_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Student_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Teacher_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Situation_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Subject_Term" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

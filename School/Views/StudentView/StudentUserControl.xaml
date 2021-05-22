@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="School.Views.StudentView.StudentUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:School.ViewModels.UsersControl.Student"
+             mc:Ignorable="d" 
+            Style="{StaticResource MyUserControlStyle}">
+    <UserControl.DataContext>
+        <local:StudentUserControlVM/>
+    </UserControl.DataContext>
+    <Grid Style="{StaticResource MyGridStyle}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Menu IsMainMenu="True" Grid.ColumnSpan="8">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Log out" Command="{Binding OpenUserControlCommand}" CommandParameter="1"/>
+                    <MenuItem Header="_Exit" Command="{Binding OpenUserControlCommand}" CommandParameter="2"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+        <TextBlock  Grid.Row="1" Grid.ColumnSpan="2" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Student"  FontSize="20" TextAlignment="Center" FontStretch="ExtraCondensed"  Width="Auto"/>
+
+    </Grid>
+</UserControl>

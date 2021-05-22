@@ -35,8 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,39 +63,135 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Admin\AdminUserControl.xaml.cs">
+    <Compile Include="Converters\PersonConvert.cs" />
+    <Compile Include="Helpers\BaseVM.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Models\Absence.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Actions\AdminActions.cs" />
+    <Compile Include="Models\Actions\MasterAction.cs" />
+    <Compile Include="Models\Actions\PersonActions.cs" />
+    <Compile Include="Models\Actions\StudentActions.cs" />
+    <Compile Include="Models\Actions\TeacherActions.cs" />
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_Master.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_Subject.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Class_Teacher.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grade.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Material.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Person.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SchoolModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\selectPersone_Result.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Situation.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Teacher.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Term.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\UsersControl\Admin\AdminUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Admin\EditStudentUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Admin\EditSubjectUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Admin\EditTeacherUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\LogIn\LogInUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Master\MasterUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Student\StudentUserControlVM.cs" />
+    <Compile Include="ViewModels\UsersControl\Teacher\TeacherUserControlVM.cs" />
+    <Compile Include="Views\AdminView\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\EditStudentUserControl.xaml.cs">
+    <Compile Include="Views\AdminView\EditStudentUserControl.xaml.cs">
       <DependentUpon>EditStudentUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Admin\EditTeacherUserControl.xaml.cs">
+    <Compile Include="Views\AdminView\EditSubjectUserControl.xaml.cs">
+      <DependentUpon>EditSubjectUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminView\EditTeacherUserControl.xaml.cs">
       <DependentUpon>EditTeacherUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Log in\LogInUserControl.xaml.cs">
+    <Compile Include="Views\LogInView\LogInUserControl.xaml.cs">
       <DependentUpon>LogInUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Switcher.cs" />
-    <Compile Include="Teacher\TeacherUserControl.xaml.cs">
+    <Compile Include="Helpers\Switcher.cs" />
+    <Compile Include="Views\MasterView\MasterUserControl.xaml.cs">
+      <DependentUpon>MasterUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentView\StudentUserControl.xaml.cs">
+      <DependentUpon>StudentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherView\TeacherUserControl.xaml.cs">
       <DependentUpon>TeacherUserControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="Admin\AdminUserControl.xaml">
+    <Page Include="Configuration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\EditStudentUserControl.xaml">
+    <Page Include="Views\AdminView\AdminUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Admin\EditTeacherUserControl.xaml">
+    <Page Include="Views\AdminView\EditStudentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Log in\LogInUserControl.xaml">
+    <Page Include="Views\AdminView\EditSubjectUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\AdminView\EditTeacherUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogInView\LogInUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -95,11 +199,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Teacher\TeacherUserControl.xaml">
+    <Page Include="Views\MasterView\MasterUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentView\StudentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherView\TeacherUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +234,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\SchoolModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\SchoolModel.edmx.diagram">
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,6 +250,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\SchoolModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolModel.Context.cs</LastGenOutput>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SchoolModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolModel.edmx</DependentUpon>
+      <LastGenOutput>SchoolModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
