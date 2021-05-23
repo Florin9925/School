@@ -10,24 +10,28 @@
     <UserControl.DataContext>
         <local:MasterUserControlVM/>
     </UserControl.DataContext>
-    
+
     <Grid Style="{StaticResource MyGridStyle}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="150"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <StackPanel 
             Grid.Row="0" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="4">
             <Menu 
                 IsMainMenu="True" 
                 Grid.ColumnSpan="8">
@@ -52,13 +56,304 @@
             Grid.Row="1" 
             Grid.ColumnSpan="2" 
             Height="32" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
             Text="Master" 
             FontSize="20" 
             TextAlignment="Center"
             FontStretch="ExtraCondensed"
+            Width="Auto"
+            Margin="10"/>
+
+
+
+
+        <TextBlock  
+            Grid.Row="3" 
+            Grid.ColumnSpan="2"
+            Grid.Column="2"
+            Height="32"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="List of absence:" 
+            FontSize="20" 
+            TextAlignment="Center"
+            FontStretch="ExtraCondensed" 
             Width="Auto"/>
+
+        <WrapPanel
+            Grid.Row ="4" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="40" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Date" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Is justify" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Can justify" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Term" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+
+
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.ColumnSpan="4" 
+            Name="listAbsences" 
+            ItemsSource="{Binding Absences}"
+            Width="350" Height="170">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox
+                            Name="txtIdAbsence"
+                            Text="{Binding Id}"
+                            Height="31"
+                            Width="40"/>
+                            <TextBox 
+                            Name="txtDateAbsence"  
+                            Text="{Binding Date}" 
+                            Height="31" 
+                            Width="70"/>
+                            <TextBox
+                            Name="txtIsJustifyAbsence" 
+                            Text="{Binding IsJustify}"
+                            Height="31" 
+                            Width="70"/>
+                            <TextBox
+                            Name="txtCanJustifyAbsence" 
+                            Text="{Binding CanJustify}"
+                            Height="31" 
+                            Width="70"/>
+                            <TextBox
+                            Name="txtTermAbsence" 
+                            Text="{Binding CanJustify}"
+                            Height="31" 
+                            Width="70"/>
+
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+
+
+
+        <!--students-->
+
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.ColumnSpan="2"
+            Grid.Column="2"
+            Height="32"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="List of students:" 
+            FontSize="20" 
+            TextAlignment="Center"
+            FontStretch="ExtraCondensed" 
+            Width="Auto"/>
+
+        <WrapPanel
+            Grid.Row ="2" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="50" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="First name" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Last name" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Situation" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+
+
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2"  
+            Grid.ColumnSpan="4" 
+            Name="listTeachers" 
+            ItemsSource="{Binding Teachers}"
+            Width="350" Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox
+                            Name="txtIdStudent"
+                            Text="{Binding Id}"
+                            Height="31"
+                            Width="40"/>
+                            <TextBox 
+                            Name="txtFirstNameStudent"  
+                            Text="{Binding FirstName}" 
+                            Height="31" 
+                            Width="90"/>
+                            <TextBox
+                            Name="txtLastNameStudent" 
+                            Text="{Binding LastName}"
+                            Height="31" 
+                            Width="90"/>
+                            <TextBox
+                            Name="txtSituationStudent" 
+                            Text="{Binding Situation}"
+                            Height="31" 
+                            Width="90"/>
+
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+
+       
+
+        <StackPanel 
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button
+                Content="Justify absence"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="10"/>
+            <Button
+                Content="Show unjustify absence"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="11"/>
+            <Button
+                Content="All absences"
+                Height="25"
+                Margin="0,25,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="12"/>
+            <Button
+                Content="All unjustified absences"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="13"/>
+        </StackPanel>
+        
+        <StackPanel 
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button
+                Content="All students"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="4"/>
+            <Button
+                Content="Student term situation"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="5"/>
+            <Button
+                Content="Class situation"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="6"/>
+            <Button
+                Content="Award students"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="7"/>
+            <Button
+                Content="Correcting students"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="8"/>
+            <Button
+                Content="Expelled students"
+                Height="25"
+                Margin="0,10,0,0" 
+                Width="170" 
+                Command="{Binding OpenUserControlCommand}"
+                CommandParameter="9"/>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="5" 
+            Grid.Column="2"
+            Grid.ColumnSpan="2">
+            <TextBlock  
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Text="Number of absence:" 
+                FontSize="20" 
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed"
+                Width="Auto"
+                Margin="10"/>
+            <TextBlock  
+                x:Name="txtBlockNumberOfAbsence"
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                FontSize="20" 
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed"
+                Width="Auto"
+                Margin="10"/>
+            
+        </StackPanel>
 
     </Grid>
 </UserControl>

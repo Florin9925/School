@@ -52,23 +52,39 @@ namespace School.ViewModels.UsersControl.Teacher
                 case "7":
                     SaveGrade();
                     break;
+                case "8":
+                    MakeSituation();
+                    break;
+                case "9":
+                    ShowSituation();
+                    break;
 
             }
         }
 
+        private void ShowSituation()
+        {
+            throw new NotImplementedException("aici se va face implementarea pentru afisarea situatiei unui elev");
+        }
+
+        private void MakeSituation()
+        {
+            throw new NotImplementedException("aici se va implementa funtia prin care se calculeaza situatia unui elev");
+        }
+
         private void SaveGrade()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("aici se va face implementarea pentru functia carea va adauga o nota elevului asta dupa ce s-a apasat pe add grade si s-au completat campurile necesare");
         }
 
         private void AddGrade()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("aici se va implementa functia prin care se golesc campurile de editare pentru grade ca sa se poata introduce datele pentru o noua nota");
         }
 
         private void CancelsGrade()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("aici se va anula nota");
         }
     }
 }

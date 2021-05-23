@@ -76,19 +76,12 @@
                 Command="{Binding OpenUserControlCommand}" 
                 CommandParameter="5"/>
             <Button 
-                Content="Situation"
-                Height="25" 
-                Margin="0,10,0,0" 
-                Width="150"
-                Command="{Binding OpenUserControlCommand}"
-                CommandParameter="6"/>
-            <Button 
                 Content="Material"
                 Height="25" 
                 Margin="0,10,0,0" 
                 Width="150"
                 Command="{Binding OpenUserControlCommand}"
-                CommandParameter="7"/>
+                CommandParameter="6"/>
         </StackPanel>
 
 

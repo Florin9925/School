@@ -47,10 +47,9 @@ namespace School.ViewModels.UsersControl.Teacher
                     Switcher.Switch(new GradeUserControl());
                     break;
                 case "6":
-                    Switcher.Switch(new SituationUserControl());
+                    Switcher.Switch(new MaterialUserControl());
                     break;
                 case "7":
-                    Switcher.Switch(new MaterialUserControl());
                     break;
 
             }

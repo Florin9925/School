@@ -40,9 +40,88 @@ namespace School.ViewModels.UsersControl.Master
                     Switcher.pageSwitcher.Close();
                     break;
                 case "4":
+                    ShowAllStudents();
+                    break;
+                case "5":
+                    ShowStudentTermSituation();
+                    break;
+                case "6":
+                    ShowClassSituation();
+                    break;
+                case "7":
+                    SworAwardStudents();
+                    break;
+                case "8":
+                    ShowCorrectingStudents();
+                    break;
+                case "9":
+                    ShowExpelledStudents();
+                    break;
+                case "10":
+                    JustifyAbsence();
+                    break;
+                case "11":
+                    ShowUnjustifyAbsence();
+                    break;
+                case "12":
+                    AllAbsence();
+                    break;
+                case "13":
+                    AllUnjustifyAbsence();
                     break;
 
+
             }
+        }
+
+        private void AllUnjustifyAbsence()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AllAbsence()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowUnjustifyAbsence()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void JustifyAbsence()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowExpelledStudents()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowCorrectingStudents()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SworAwardStudents()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowClassSituation()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowStudentTermSituation()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowAllStudents()
+        {
+            throw new NotImplementedException();
         }
     }
 }

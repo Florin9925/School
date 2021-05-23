@@ -44,9 +44,39 @@ namespace School.ViewModels.UsersControl.Teacher
                     Switcher.pageSwitcher.Close();
                     break;
                 case "5":
+                    EditMaterial();
+                    break;
+                case "6":
+                    DeleteMaterial();
+                    break;
+                case "7":
+                    AddMaterial();
+                    break;
+                case "8":
+                    SaveMaterial();
                     break;
 
             }
+        }
+
+        private void SaveMaterial()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddMaterial()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteMaterial()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditMaterial()
+        {
+            throw new NotImplementedException();
         }
     }
 }

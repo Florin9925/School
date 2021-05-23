@@ -144,7 +144,6 @@
     <Compile Include="ViewModels\UsersControl\Teacher\AbsenceUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\Teacher\GradeUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\Teacher\MaterialUserControlVM.cs" />
-    <Compile Include="ViewModels\UsersControl\Teacher\SituationUserControlVM.cs" />
     <Compile Include="ViewModels\UsersControl\Teacher\TeacherUserControlVM.cs" />
     <Compile Include="Views\AdminView\AdminUserControl.xaml.cs">
       <DependentUpon>AdminUserControl.xaml</DependentUpon>
@@ -176,9 +175,6 @@
     </Compile>
     <Compile Include="Views\TeacherView\MaterialUserControl.xaml.cs">
       <DependentUpon>MaterialUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TeacherView\SituationUserControl.xaml.cs">
-      <DependentUpon>SituationUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TeacherView\TeacherUserControl.xaml.cs">
       <DependentUpon>TeacherUserControl.xaml</DependentUpon>
@@ -236,10 +232,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TeacherView\MaterialUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TeacherView\SituationUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

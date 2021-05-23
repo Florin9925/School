@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:School.ViewModels.UsersControl.Teacher"
              mc:Ignorable="d" 
              Style="{StaticResource MyUserControlStyle}">
+
     <UserControl.DataContext>
         <local:MaterialUserControlVM/>
     </UserControl.DataContext>
@@ -13,14 +14,24 @@
     <Grid Style="{StaticResource MyGridStyle}">
 
 
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="400"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
         <StackPanel 
-            Grid.Row="0">
+            Grid.Row="0"
+            Grid.ColumnSpan="4">
             <Menu 
                 IsMainMenu="True" 
                 Grid.ColumnSpan="8">
@@ -45,6 +56,292 @@
                 </MenuItem>
             </Menu>
         </StackPanel>
+
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.ColumnSpan="2" 
+            Grid.Column="2"
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Text="List of materials:"  
+            FontSize="20" 
+            TextAlignment="Center" 
+            FontStretch="ExtraCondensed"  
+            Width="Auto"/>
+
+        <WrapPanel
+            Grid.Row ="2" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,0,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="30" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Name" 
+                    Height="31" 
+                    Width="110" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Type" 
+                    Height="31" 
+                    Width="50" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Link" 
+                    Height="31" 
+                    Width="150" 
+                    BorderThickness="0"/>
+                
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.ColumnSpan="2" 
+            Name="listMaterials" 
+            ItemsSource="{Binding Classes}" 
+            Width="350" 
+            Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox 
+                                Text="{Binding Id}" 
+                                Height="31" 
+                                Name="txtIdMaterial" 
+                                Width="30"/>
+                            <TextBox 
+                                Text="{Binding Name}" 
+                                Height="31" 
+                                Name="txtNameMaterial"  
+                                Width="110"/>
+                            <TextBox 
+                                Name="txtTypeMaterial" 
+                                Text="{Binding Year}" 
+                                Height="31" 
+                                Width="50"/>
+                            <TextBox 
+                                Name="txtLinkMaterial" 
+                                Text="{Binding Field}" 
+                                Height="31" 
+                                Width="150"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Text="List of subjects:"  
+            FontSize="20" 
+            TextAlignment="Center" 
+            FontStretch="ExtraCondensed" 
+            Width="Auto"/>
+
+        <WrapPanel
+            Grid.Row ="2" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="40" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Name subject" 
+                    Height="31" 
+                    Width="120" 
+                    BorderThickness="0"/>
+
+                <Label 
+                    Content="Tearm" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Id Class" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Name="listClassSubject" 
+            ItemsSource="{Binding Students}" 
+            Width="350" 
+            Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox 
+                            Name="txtIdSubject" 
+                            Text="{Binding Id}" 
+                            Height="31" 
+                            Width="40"/>
+                            <TextBox 
+                            Name="txtNameSubject"  
+                            Text="{Binding NameSubject}" 
+                            Height="31" 
+                            Width="150"/>
+                            <TextBox 
+                            Name="txtTearm" 
+                            Text="{Binding Tearm}" 
+                            Height="31" 
+                            Width="120"/>
+                            <TextBox 
+                            Name="txtIdClass" 
+                            Text="{Binding IdTeacher}" 
+                            Height="31" 
+                            Width="70"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+        <StackPanel 
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Grid.Column="0"  
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <TextBlock  
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,0,0,0" 
+                Text="Id material:"  
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed"  
+                Width="Auto"/>
+            <TextBlock  
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,5,0,0" 
+                Text="Name material:"  
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock 
+                Height="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,5,0,0"
+                Text="Type:"  
+                FontSize="20"
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed"  
+                Width="Auto"/>
+            <TextBlock  
+                Height="32"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,5,0,0"
+                Text="Link:" 
+                FontSize="20"
+                TextAlignment="Center"
+                FontStretch="ExtraCondensed"
+                Width="Auto"/>
+          
+
+
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="3" 
+            Grid.RowSpan="2"
+            Grid.Column="1" 
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+            <TextBox 
+                Name="textBoxIdMaterial"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,0,0,0" 
+                Width="300"
+                Height="32" />
+            <TextBox 
+                Name="textBoxNameMaterial"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Margin="0,5,0,0" 
+                Width="300" 
+                Height="32" />
+            <TextBox 
+                Name="textBoxTypeMaterial"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                Margin="0,5,0,0"
+                Width="300" 
+                Height="32" />
+            <TextBox
+                Name="textBoxLinkMaterial" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Margin="0,5,0,0"
+                Width="300" 
+                Height="32" />
+            
+
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Grid.Column="3"  
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button 
+                Content="Edit material"
+                Height="25" 
+                Margin="0,0,0,0" 
+                Width="150"
+                Command="{Binding OpenUserControlCommand}" 
+                CommandParameter="5"/>
+            <Button 
+                Content="Delete material" 
+                Height="25" 
+                Margin="0,10,0,0" 
+                Width="150" 
+                Command="{Binding OpenUserControlCommand}" 
+                CommandParameter="6"/>
+            <Button 
+                Content="Add material" 
+                Height="25" 
+                Margin="0,10,0,0" 
+                Width="150" 
+                Command="{Binding OpenUserControlCommand}" 
+                CommandParameter="7"/>
+            <Button 
+                Content="Save material" 
+                Height="25" 
+                Margin="0,10,0,0" 
+                Width="150" 
+                Command="{Binding OpenUserControlCommand}" 
+                CommandParameter="8" 
+                Visibility ="Hidden"/>
+        </StackPanel>
+
+
+
+        
+      
+
 
     </Grid>
 </UserControl>
