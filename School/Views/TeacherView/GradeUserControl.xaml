@@ -176,8 +176,8 @@
             <ListBox 
             Grid.Row ="2" 
             Grid.ColumnSpan="4" 
-            Name="listAbsences" 
-            ItemsSource="{Binding Absences}"
+            Name="listGrades" 
+            ItemsSource="{Binding Grades}"
             Width="350" Height="170">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

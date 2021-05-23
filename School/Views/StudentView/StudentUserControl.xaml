@@ -13,19 +13,23 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition Height="150"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <StackPanel 
             Grid.Row="0" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2">
+            Grid.ColumnSpan="4">
             <Menu 
                 IsMainMenu="True" 
                 Grid.ColumnSpan="8">
@@ -48,11 +52,353 @@
             Height="32" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
-            Text="Student" 
+            Text="List of subjects:" 
             FontSize="20" 
             TextAlignment="Center" 
             FontStretch="ExtraCondensed" 
             Width="Auto"/>
+
+        <TextBlock  
+            Grid.Row="1" 
+            Grid.Column="2"
+            Grid.ColumnSpan="2" 
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Text="List of materials:" 
+            FontSize="20" 
+            TextAlignment="Center" 
+            FontStretch="ExtraCondensed" 
+            Width="Auto"/>
+
+        <TextBlock  
+            Grid.Row="3" 
+            Grid.Column="2"
+            Grid.ColumnSpan="2" 
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Text="List of absences:" 
+            FontSize="20" 
+            TextAlignment="Center" 
+            FontStretch="ExtraCondensed" 
+            Width="Auto"/>
+
+        <TextBlock  
+            Grid.Row="3" 
+            Grid.Column="0"
+            Grid.ColumnSpan="2" 
+            Height="32" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Text="List of grades:" 
+            FontSize="20" 
+            TextAlignment="Center" 
+            FontStretch="ExtraCondensed" 
+            Width="Auto"/>
+
+
+        <WrapPanel
+            Grid.Row ="2" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="40" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Name subject" 
+                    Height="31" 
+                    Width="120" 
+                    BorderThickness="0"/>
+
+                <Label 
+                    Content="Tearm" 
+                    Height="31" 
+                    Width="100" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Id Teacher" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Name="listSubject" 
+            ItemsSource="{Binding Students}" 
+            Width="350" 
+            Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox 
+                            Name="txtIdSubject" 
+                            Text="{Binding Id}" 
+                            Height="31" 
+                            Width="40"/>
+                            <TextBox 
+                            Name="txtNameSubject"  
+                            Text="{Binding NameSubject}" 
+                            Height="31" 
+                            Width="150"/>
+                            <TextBox 
+                            Name="txtTearmSubject" 
+                            Text="{Binding Tearm}" 
+                            Height="31" 
+                            Width="120"/>
+                            <TextBox 
+                            Name="txtIdTeacherSubject" 
+                            Text="{Binding IdTeacher}" 
+                            Height="31" 
+                            Width="70"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+
+
+        <WrapPanel
+            Grid.Row ="2" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,0,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="30" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Name" 
+                    Height="31" 
+                    Width="110" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Type" 
+                    Height="31" 
+                    Width="50" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Link" 
+                    Height="31" 
+                    Width="150" 
+                    BorderThickness="0"/>
+
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.ColumnSpan="2" 
+            Name="listMaterials" 
+            ItemsSource="{Binding Classes}" 
+            Width="350" 
+            Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox 
+                                Text="{Binding Id}" 
+                                Height="31" 
+                                Name="txtIdMaterial" 
+                                Width="30"/>
+                            <TextBox 
+                                Text="{Binding Name}" 
+                                Height="31" 
+                                Name="txtNameMaterial"  
+                                Width="110"/>
+                            <TextBox 
+                                Name="txtTypeMaterial" 
+                                Text="{Binding Year}" 
+                                Height="31" 
+                                Width="50"/>
+                            <TextBox 
+                                Name="txtLinkMaterial" 
+                                Text="{Binding Field}" 
+                                Height="31" 
+                                Width="150"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+        <WrapPanel
+            Grid.Row ="4" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="50" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Date" 
+                    Height="31" 
+                    Width="80" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Mark" 
+                    Height="31" 
+                    Width="80" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Is midterm" 
+                    Height="31" 
+                    Width="80" 
+                    BorderThickness="0"/>
+
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.ColumnSpan="4" 
+            Name="listGrades" 
+            ItemsSource="{Binding Grades}"
+            Width="350" Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox
+                            Name="txtIdGrade"
+                            Text="{Binding Id}"
+                            Height="31"
+                            Width="50"/>
+                            <TextBox 
+                            Name="txtDateGrade"  
+                            Text="{Binding Date}" 
+                            Height="31" 
+                            Width="80"/>
+                            <TextBox
+                            Name="txtMarkGrade" 
+                            Text="{Binding IsJustify}"
+                            Height="31" 
+                            Width="80"/>
+                            <TextBox
+                            Name="txtIsMidtermGrade" 
+                            Text="{Binding CanJustify}"
+                            Height="31" 
+                            Width="80"/>
+
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+
+        <WrapPanel
+            Grid.Row ="4" 
+            Grid.Column="2" 
+            Grid.ColumnSpan="2" 
+            Margin="25,0,25,0">
+            <WrapPanel>
+                <Label
+                    Content="Id" 
+                    Height="31" 
+                    Width="40" 
+                    BorderThickness="0" />
+                <Label 
+                    Content="Date" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Is justify" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Can justify" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+                <Label 
+                    Content="Term" 
+                    Height="31" 
+                    Width="70" 
+                    BorderThickness="0"/>
+
+
+            </WrapPanel>
+            <ListBox 
+            Grid.Row ="2" 
+            Grid.ColumnSpan="4" 
+            Name="listAbsences" 
+            ItemsSource="{Binding Absences}"
+            Width="350" Height="220">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBox
+                            Name="txtIdAbsence"
+                            Text="{Binding Id}"
+                            Height="31"
+                            Width="40"/>
+                            <TextBox 
+                            Name="txtDateAbsence"  
+                            Text="{Binding Date}" 
+                            Height="31" 
+                            Width="70"/>
+                            <TextBox
+                            Name="txtIsJustifyAbsence" 
+                            Text="{Binding IsJustify}"
+                            Height="31" 
+                            Width="70"/>
+                            <TextBox
+                            Name="txtCanJustifyAbsence" 
+                            Text="{Binding CanJustify}"
+                            Height="31" 
+                            Width="70"/>
+                            <TextBox
+                            Name="txtTermAbsence" 
+                            Text="{Binding CanJustify}"
+                            Height="31" 
+                            Width="70"/>
+
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </WrapPanel>
+
+        <StackPanel
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2" Margin="0,0,0,-104"
+            >
+            <TextBlock  
+                Grid.Row="1" 
+                Grid.ColumnSpan="2" 
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Text="Situation:" 
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock  
+                x:Name="textBlockSituation"
+                Grid.Row="1" 
+                Grid.ColumnSpan="2" 
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+        </StackPanel>
+
+
 
     </Grid>
 </UserControl>
