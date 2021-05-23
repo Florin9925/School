@@ -171,7 +171,7 @@
             Grid.Row ="2" 
             Grid.Column="2" 
             Grid.ColumnSpan="2" 
-            Name="listClassSubject" 
+            Name="listSubject" 
             ItemsSource="{Binding Students}" 
             Width="350" 
             Height="220">

@@ -16,14 +16,14 @@ namespace School.Models
     {
         public Teacher()
         {
-            this.Class_Teacher = new HashSet<Class_Teacher>();
-            this.Material = new HashSet<Material>();
+            this.Class = new HashSet<Class>();
+            this.Teacher_Subject = new HashSet<Teacher_Subject>();
         }
     
         public int id_teacher { get; set; }
     
-        public virtual ICollection<Class_Teacher> Class_Teacher { get; set; }
-        public virtual ICollection<Material> Material { get; set; }
+        public virtual ICollection<Class> Class { get; set; }
         public virtual Person Person { get; set; }
+        public virtual ICollection<Teacher_Subject> Teacher_Subject { get; set; }
     }
 }

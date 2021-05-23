@@ -259,7 +259,7 @@
             <ListBox 
             Grid.Row ="2" 
             Grid.ColumnSpan="4" 
-            Name="listTeachers" 
+            Name="listStudents" 
             ItemsSource="{Binding Teachers}"
             Width="350" Height="220">
                 <ListBox.ItemTemplate>

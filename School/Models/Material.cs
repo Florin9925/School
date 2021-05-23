@@ -15,11 +15,9 @@ namespace School.Models
     public partial class Material
     {
         public int id_material { get; set; }
-        public byte[] type { get; set; }
-        public int fk_teacher { get; set; }
-        public int fk_class_subject { get; set; }
+        public string type { get; set; }
+        public int fk_assignment { get; set; }
     
-        public virtual Class_Subject Class_Subject { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        public virtual Assignment Assignment { get; set; }
     }
 }

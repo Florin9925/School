@@ -17,15 +17,17 @@ namespace School.Models
         public Student()
         {
             this.Absence = new HashSet<Absence>();
-            this.Situation = new HashSet<Situation>();
+            this.Situation_Subject = new HashSet<Situation_Subject>();
         }
     
-        public int fk_student { get; set; }
-        public short fk_class { get; set; }
+        public int id_student { get; set; }
+        public Nullable<bool> is_debtor { get; set; }
+        public Nullable<double> annual_grade { get; set; }
+        public Nullable<int> fk_class { get; set; }
     
         public virtual ICollection<Absence> Absence { get; set; }
         public virtual Class Class { get; set; }
         public virtual Person Person { get; set; }
-        public virtual ICollection<Situation> Situation { get; set; }
+        public virtual ICollection<Situation_Subject> Situation_Subject { get; set; }
     }
 }

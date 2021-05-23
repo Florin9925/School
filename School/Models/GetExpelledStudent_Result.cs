@@ -10,12 +10,11 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Class_Master
+    public partial class GetExpelledStudent_Result
     {
-        public short fk_classmaster { get; set; }
-    
-        public virtual Class_Teacher Class_Teacher { get; set; }
+        public int id_person { get; set; }
+        public string first_name { get; set; }
+        public string last_name { get; set; }
     }
 }

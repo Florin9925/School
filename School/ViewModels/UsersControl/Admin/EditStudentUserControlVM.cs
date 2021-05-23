@@ -24,6 +24,21 @@ namespace School.ViewModels.UsersControl.Admin
                 return openUserControlCommand;
             }
         }
+        
+        private ICommand selectItem;
+        public ICommand SelectItem
+        {
+            get
+            {
+                if (selectItem == null)
+                {
+                    selectItem = new RelayCommand(OpenUserControl);
+                }
+                return selectItem;
+            }
+        }
+        
+
 
         public void OpenUserControl(object obj)
         {

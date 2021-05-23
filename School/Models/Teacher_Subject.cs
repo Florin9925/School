@@ -12,22 +12,23 @@ namespace School.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Class
+    public partial class Teacher_Subject
     {
-        public Class()
+        public Teacher_Subject()
         {
+            this.Absence = new HashSet<Absence>();
             this.Assignment = new HashSet<Assignment>();
-            this.Student = new HashSet<Student>();
+            this.Situation_Subject = new HashSet<Situation_Subject>();
         }
     
-        public int id_class { get; set; }
-        public string name { get; set; }
-        public int year { get; set; }
-        public string field { get; set; }
-        public int fk_classmaster { get; set; }
+        public int id_teacher_subject { get; set; }
+        public int fk_teacher { get; set; }
+        public int fk_subject { get; set; }
     
+        public virtual ICollection<Absence> Absence { get; set; }
         public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual ICollection<Situation_Subject> Situation_Subject { get; set; }
+        public virtual Subject Subject { get; set; }
         public virtual Teacher Teacher { get; set; }
-        public virtual ICollection<Student> Student { get; set; }
     }
 }

@@ -12,24 +12,20 @@ namespace School.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Class_Subject
+    public partial class Assignment
     {
-        public Class_Subject()
+        public Assignment()
         {
-            this.Class_Teacher = new HashSet<Class_Teacher>();
             this.Material = new HashSet<Material>();
-            this.Situation = new HashSet<Situation>();
         }
     
-        public int id_class_subject { get; set; }
-        public Nullable<bool> has_midterm { get; set; }
-        public short fk_class { get; set; }
-        public byte fk_subject { get; set; }
+        public int id_assignment { get; set; }
+        public bool has_midterm { get; set; }
+        public int fk_class { get; set; }
+        public int fk_teacher_subject { get; set; }
     
         public virtual Class Class { get; set; }
-        public virtual ICollection<Class_Teacher> Class_Teacher { get; set; }
-        public virtual Subject Subject { get; set; }
+        public virtual Teacher_Subject Teacher_Subject { get; set; }
         public virtual ICollection<Material> Material { get; set; }
-        public virtual ICollection<Situation> Situation { get; set; }
     }
 }

@@ -10,19 +10,13 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Subject
+    public partial class StudentViewGrades_Result
     {
-        public Subject()
-        {
-            this.Teacher_Subject = new HashSet<Teacher_Subject>();
-        }
-    
-        public int id_subject { get; set; }
-        public string name { get; set; }
-        public int term { get; set; }
-    
-        public virtual ICollection<Teacher_Subject> Teacher_Subject { get; set; }
+        public int id_grade { get; set; }
+        public int mark { get; set; }
+        public System.DateTime date { get; set; }
+        public bool is_midterm { get; set; }
+        public int fk_situation { get; set; }
     }
 }

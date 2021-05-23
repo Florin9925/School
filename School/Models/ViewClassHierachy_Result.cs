@@ -10,17 +10,12 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Term
+    public partial class ViewClassHierachy_Result
     {
-        public Term()
-        {
-            this.Subject = new HashSet<Subject>();
-        }
-    
-        public byte term_order { get; set; }
-    
-        public virtual ICollection<Subject> Subject { get; set; }
+        public int id_student { get; set; }
+        public Nullable<bool> is_debtor { get; set; }
+        public Nullable<double> annual_grade { get; set; }
+        public Nullable<int> fk_class { get; set; }
     }
 }

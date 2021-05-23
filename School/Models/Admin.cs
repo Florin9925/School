@@ -14,7 +14,7 @@ namespace School.Models
     
     public partial class Admin
     {
-        public int fk_id { get; set; }
+        public int id_admin { get; set; }
     
         public virtual Person Person { get; set; }
     }

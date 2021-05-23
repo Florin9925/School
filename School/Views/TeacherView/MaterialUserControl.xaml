@@ -102,7 +102,7 @@
             Grid.Row ="2" 
             Grid.ColumnSpan="2" 
             Name="listMaterials" 
-            ItemsSource="{Binding Classes}" 
+            ItemsSource="{Binding Materials}" 
             Width="350" 
             Height="220">
                 <ListBox.ItemTemplate>
@@ -178,8 +178,8 @@
             Grid.Row ="2" 
             Grid.Column="2" 
             Grid.ColumnSpan="2" 
-            Name="listClassSubject" 
-            ItemsSource="{Binding Students}" 
+            Name="listSubject" 
+            ItemsSource="{Binding Subjects}" 
             Width="350" 
             Height="220">
                 <ListBox.ItemTemplate>

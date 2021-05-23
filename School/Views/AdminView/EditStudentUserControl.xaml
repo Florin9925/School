@@ -99,46 +99,52 @@
                     BorderThickness="0"/>
             </WrapPanel>
             <ListBox 
-            Grid.Row ="2" 
-            Grid.ColumnSpan="4" 
-            Name="listStudents"
-            ItemsSource="{Binding Students}" 
-            Width="550"
-            Height="220">
+                Grid.Row ="2" 
+                Grid.ColumnSpan="4" 
+                Name="listStudents"
+                ItemsSource="{Binding Students}" 
+                Width="550"
+                Height="220">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <WrapPanel>
-                            <TextBox 
-                            Name="txtId"
-                            Text="{Binding Id}"
-                            Height="31"
-                            Width="50"/>
-                            <TextBox 
-                            Name="txtFirstName" 
-                            Text="{Binding FirstName}" 
-                            Height="31" 
-                            Width="100"/>
-                            <TextBox 
-                            Name="txtLastName"
-                            Text="{Binding LastName}" 
-                            Height="31" 
-                            Width="100"/>
-                            <TextBox 
-                            Name="txtUsername" 
-                            Text="{Binding Username}"
-                            Height="31"
-                            Width="100"/>
-                            <TextBox 
-                            Name="txtPassword" 
-                            Text="{Binding Password}"
-                            Height="31"
-                            Width="100"/>
-                            <TextBox 
-                            Name="txtIdClass" 
-                            Text="{Binding IdClass}"
-                            Height="31"
-                            Width="50"/>
-                        </WrapPanel>
+                        <Button 
+                            Command="{Binding OpenUserControlCommand}" 
+                            CommandParameter="7" 
+                            Height="Auto" 
+                            Width="Auto">
+                            <WrapPanel>
+                                <TextBox 
+                                    Name="txtId"
+                                    Text="{Binding Id}"
+                                    Height="31"
+                                    Width="50"/>
+                                <TextBox 
+                                    Name="txtFirstName" 
+                                    Text="{Binding FirstName}" 
+                                    Height="31" 
+                                    Width="100"/>
+                                <TextBox 
+                                    Name="txtLastName"
+                                    Text="{Binding LastName}" 
+                                    Height="31" 
+                                    Width="100"/>
+                                <TextBox 
+                                    Name="txtUsername" 
+                                    Text="{Binding Username}"
+                                    Height="31"
+                                    Width="100"/>
+                                <TextBox 
+                                    Name="txtPassword" 
+                                    Text="{Binding Password}"
+                                    Height="31"
+                                    Width="100"/>
+                                <TextBox 
+                                    Name="txtIdClass" 
+                                    Text="{Binding IdClass}"
+                                    Height="31"
+                                    Width="50"/>
+                            </WrapPanel>
+                        </Button>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

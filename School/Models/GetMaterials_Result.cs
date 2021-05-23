@@ -10,19 +10,11 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Subject
+    public partial class GetMaterials_Result
     {
-        public Subject()
-        {
-            this.Teacher_Subject = new HashSet<Teacher_Subject>();
-        }
-    
-        public int id_subject { get; set; }
-        public string name { get; set; }
-        public int term { get; set; }
-    
-        public virtual ICollection<Teacher_Subject> Teacher_Subject { get; set; }
+        public int id_material { get; set; }
+        public string type { get; set; }
+        public int fk_assignment { get; set; }
     }
 }

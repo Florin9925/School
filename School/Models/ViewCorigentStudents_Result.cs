@@ -10,19 +10,10 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Subject
+    public partial class ViewCorigentStudents_Result
     {
-        public Subject()
-        {
-            this.Teacher_Subject = new HashSet<Teacher_Subject>();
-        }
-    
-        public int id_subject { get; set; }
-        public string name { get; set; }
-        public int term { get; set; }
-    
-        public virtual ICollection<Teacher_Subject> Teacher_Subject { get; set; }
+        public int fk_student { get; set; }
+        public Nullable<int> Column1 { get; set; }
     }
 }

@@ -10,14 +10,12 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class GetAllStudentsInAClass_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id_student { get; set; }
+        public Nullable<bool> is_debtor { get; set; }
+        public Nullable<double> annual_grade { get; set; }
+        public Nullable<int> fk_class { get; set; }
     }
 }

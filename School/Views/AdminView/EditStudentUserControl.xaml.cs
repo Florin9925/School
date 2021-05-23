@@ -26,5 +26,10 @@ namespace School.Views.AdminView
         {
             InitializeComponent();
         }
+
+        private void listStudents_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -10,23 +10,14 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Situation
+    public partial class GetAllCompletedSituations_Result
     {
-        public Situation()
-        {
-            this.Grade = new HashSet<Grade>();
-        }
-    
         public int id_situation { get; set; }
-        public bool debtor { get; set; }
-        public bool complete_situation { get; set; }
+        public bool is_debtor { get; set; }
+        public bool is_situation_complete { get; set; }
+        public int final_grade { get; set; }
         public int fk_student { get; set; }
-        public int fk_subject { get; set; }
-    
-        public virtual Class_Subject Class_Subject { get; set; }
-        public virtual ICollection<Grade> Grade { get; set; }
-        public virtual Student Student { get; set; }
+        public int fk_teacher_subject { get; set; }
     }
 }

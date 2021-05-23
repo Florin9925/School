@@ -10,16 +10,14 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Class_Teacher
+    public partial class StudentViewAbsences_Result
     {
-        public short id_classteacher { get; set; }
-        public int fk_teacher { get; set; }
-        public int fk_class_subject { get; set; }
-    
-        public virtual Class_Master Class_Master { get; set; }
-        public virtual Class_Subject Class_Subject { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        public int id_absence { get; set; }
+        public System.DateTime date { get; set; }
+        public bool is_justified { get; set; }
+        public bool can_be_justified { get; set; }
+        public int fk_student { get; set; }
+        public int fk_teacher_subject { get; set; }
     }
 }
