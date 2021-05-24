@@ -9,6 +9,17 @@ namespace School.ViewModels
     class StudentVM: BaseVM
     {
 
+        public StudentVM(Models.Student student)
+        {
+            _Id = student.id_student;
+            _IsDebtor = student.is_debtor;
+            _AnnualGrade = student.annual_grade;
+        }
+        public StudentVM()
+        {
+
+        }
+
         private int _Id;
         public int Id
         {
@@ -17,16 +28,16 @@ namespace School.ViewModels
         }
 
 
-        private bool _IsDebtor;
-        public bool IsDebtor
+        private bool? _IsDebtor;
+        public bool? IsDebtor
         {
             get => _IsDebtor;
             set => SetProperty(ref _IsDebtor, value);
         }
 
 
-        private double _AnnualGrade;
-        public double AnnualGrade
+        private double? _AnnualGrade;
+        public double? AnnualGrade
         {
             get => _AnnualGrade;
             set => SetProperty(ref _AnnualGrade, value);
