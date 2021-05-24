@@ -34,7 +34,7 @@ namespace School.ViewModels.UsersControl.Teacher
 
         public void OpenUserControl(object obj)
         {
-            var isMaster = context.GetClassWhereMastert(CURRENT_TEACHER).ToList<int?>();
+            var isMaster = context.GetClassWhereMaster(CURRENT_TEACHER).ToList<int?>();
 
             string nr = obj as string;
             switch (nr)

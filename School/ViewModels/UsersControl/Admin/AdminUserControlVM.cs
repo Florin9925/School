@@ -40,7 +40,7 @@ namespace School.ViewModels.UsersControl.Admin
                     Switcher.Switch(new EditStudentUserControl());
                     break;
                 case "4":
-                    Switcher.Switch(new EditTeacherSubjectUserControl());
+                    Switcher.Switch(new EditTeacherUserControl());
                     break;
                 case "5":
                     Switcher.Switch(new EditClassUserControl());

@@ -28,7 +28,7 @@ namespace School.Views.MainWindow
         {
             InitializeComponent();
             Switcher.pageSwitcher = this;
-            Switcher.Switch(new StudentUserControl());
+            Switcher.Switch(new LogInUserControl());
 
         }
         public void Navigate(UserControl newUserControl)

@@ -76,6 +76,7 @@
     <Compile Include="Models\Absence.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Actions\Admin\EditClassAction.cs" />
     <Compile Include="Models\Actions\Admin\EditClassSubjectAction.cs" />
     <Compile Include="Models\Actions\Admin\EditStudentAction.cs" />
     <Compile Include="Models\Actions\Admin\EditTeacherAction.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="Models\Actions\Master\MasterAction.cs" />
     <Compile Include="Models\Actions\Teacher\TeacherAction.cs" />
     <Compile Include="Models\Admin.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminGetAllClasses_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminGetAllStudents_Result.cs">
@@ -104,9 +108,6 @@
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetAllCompletedSituations_Result.cs">
-      <DependentUpon>SchoolDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetAllStudentsInAClass_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetAllTeacherSubject_Result.cs">
@@ -148,6 +149,12 @@
     <Compile Include="Models\Situation_Subject.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
@@ -179,9 +186,6 @@
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewClassHierachy_Result.cs">
-      <DependentUpon>SchoolDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ViewCorigentStudents_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AbsenceVM.cs" />
