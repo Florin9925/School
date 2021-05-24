@@ -32,11 +32,13 @@ namespace School.ViewModels
             set => SetProperty(ref _Type, value);
         }
 
-        //private int _FkAssignment;
-        //public int FkAssignment
-        //{
-        //    get => _FkAssignment;
-        //    set => SetProperty(ref _FkAssignment, value);
-        //}
+        private string _Link;
+        public string Link
+        {
+            get => _Link;
+            set => SetProperty(ref _Link, value);
+        }
+
+
     }
 }
