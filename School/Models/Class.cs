@@ -16,8 +16,8 @@ namespace School.Models
     {
         public Class()
         {
-            this.Assignment = new HashSet<Assignment>();
-            this.Student = new HashSet<Student>();
+            this.Assignments = new HashSet<Assignment>();
+            this.Students = new HashSet<Student>();
         }
     
         public int id_class { get; set; }
@@ -26,8 +26,8 @@ namespace School.Models
         public string field { get; set; }
         public int fk_classmaster { get; set; }
     
-        public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual Teacher Teacher { get; set; }
-        public virtual ICollection<Student> Student { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

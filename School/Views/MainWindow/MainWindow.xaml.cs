@@ -1,4 +1,5 @@
 ﻿using School.Helpers;
+using School.Views.AdminView;
 using School.Views.LogInView;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace School.Views.MainWindow
         {
             InitializeComponent();
             Switcher.pageSwitcher = this;
-            Switcher.Switch(new LogInUserControl());
+            Switcher.Switch(new EditStudentUserControl());
 
         }
         public void Navigate(UserControl newUserControl)

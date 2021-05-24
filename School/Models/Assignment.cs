@@ -16,7 +16,7 @@ namespace School.Models
     {
         public Assignment()
         {
-            this.Material = new HashSet<Material>();
+            this.Materials = new HashSet<Material>();
         }
     
         public int id_assignment { get; set; }
@@ -26,6 +26,6 @@ namespace School.Models
     
         public virtual Class Class { get; set; }
         public virtual Teacher_Subject Teacher_Subject { get; set; }
-        public virtual ICollection<Material> Material { get; set; }
+        public virtual ICollection<Material> Materials { get; set; }
     }
 }

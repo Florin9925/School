@@ -16,7 +16,7 @@ namespace School.Models
     {
         public Situation_Subject()
         {
-            this.Grade = new HashSet<Grade>();
+            this.Grades = new HashSet<Grade>();
         }
     
         public int id_situation { get; set; }
@@ -26,7 +26,7 @@ namespace School.Models
         public int fk_student { get; set; }
         public int fk_teacher_subject { get; set; }
     
-        public virtual ICollection<Grade> Grade { get; set; }
+        public virtual ICollection<Grade> Grades { get; set; }
         public virtual Student Student { get; set; }
         public virtual Teacher_Subject Teacher_Subject { get; set; }
     }

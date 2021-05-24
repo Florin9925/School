@@ -6,24 +6,27 @@ using System.Threading.Tasks;
 
 namespace School.ViewModels
 {
-    class TeacherVM : BaseVM
+    class AdminVM : BaseVM
     {
-        public TeacherVM(Models.Teacher teacher)
+        public AdminVM()
         {
-            _IdTeacher = teacher.id_teacher;
-            _Person = new PersonVM(teacher.Person);
-        }
-        public TeacherVM()
-        {
-      
+
         }
 
-        private int _IdTeacher;
-        public int IdTeacher
+        public AdminVM(Models.Admin admin)
         {
-            get => _IdTeacher;
-            set => SetProperty(ref _IdTeacher, value);
+            _IdAdmin = admin.id_admin;
+            _Person = new PersonVM(admin.Person);
         }
+
+
+        private int _IdAdmin;
+        public int IdAdmin
+        {
+            get => _IdAdmin;
+            set => SetProperty(ref _IdAdmin, value);
+        }
+
 
         private PersonVM _Person;
         public PersonVM Person

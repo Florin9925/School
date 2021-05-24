@@ -16,8 +16,8 @@ namespace School.Models
     {
         public Teacher_Subject()
         {
-            this.Absence = new HashSet<Absence>();
-            this.Assignment = new HashSet<Assignment>();
+            this.Absences = new HashSet<Absence>();
+            this.Assignments = new HashSet<Assignment>();
             this.Situation_Subject = new HashSet<Situation_Subject>();
         }
     
@@ -25,8 +25,8 @@ namespace School.Models
         public int fk_teacher { get; set; }
         public int fk_subject { get; set; }
     
-        public virtual ICollection<Absence> Absence { get; set; }
-        public virtual ICollection<Assignment> Assignment { get; set; }
+        public virtual ICollection<Absence> Absences { get; set; }
+        public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual ICollection<Situation_Subject> Situation_Subject { get; set; }
         public virtual Subject Subject { get; set; }
         public virtual Teacher Teacher { get; set; }

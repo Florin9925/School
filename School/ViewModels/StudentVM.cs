@@ -14,6 +14,7 @@ namespace School.ViewModels
             _Id = student.id_student;
             _IsDebtor = student.is_debtor;
             _AnnualGrade = student.annual_grade;
+            _Person = new PersonVM(student.Person);
         }
         public StudentVM()
         {
@@ -51,5 +52,11 @@ namespace School.ViewModels
         //    set => SetProperty(ref _FkClass, value);
         //}
 
+        private PersonVM _Person;
+        public PersonVM Person
+        {
+            get => _Person;
+            set => SetProperty(ref _Person, value);
+        }
     }
 }

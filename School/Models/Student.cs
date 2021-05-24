@@ -16,7 +16,7 @@ namespace School.Models
     {
         public Student()
         {
-            this.Absence = new HashSet<Absence>();
+            this.Absences = new HashSet<Absence>();
             this.Situation_Subject = new HashSet<Situation_Subject>();
         }
     
@@ -25,7 +25,7 @@ namespace School.Models
         public Nullable<double> annual_grade { get; set; }
         public Nullable<int> fk_class { get; set; }
     
-        public virtual ICollection<Absence> Absence { get; set; }
+        public virtual ICollection<Absence> Absences { get; set; }
         public virtual Class Class { get; set; }
         public virtual Person Person { get; set; }
         public virtual ICollection<Situation_Subject> Situation_Subject { get; set; }

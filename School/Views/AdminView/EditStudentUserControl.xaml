@@ -103,48 +103,45 @@
                 Grid.ColumnSpan="4" 
                 Name="listStudents"
                 ItemsSource="{Binding Students}" 
+                SelectedItem="{Binding Path=SelectedIndex, Mode=TwoWay}"
                 Width="550"
                 Height="220">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Button 
-                            Command="{Binding OpenUserControlCommand}" 
-                            CommandParameter="7" 
-                            Height="Auto" 
-                            Width="Auto">
-                            <WrapPanel>
-                                <TextBox 
+
+                        <WrapPanel>
+                            <TextBlock 
                                     Name="txtId"
                                     Text="{Binding Id}"
                                     Height="31"
                                     Width="50"/>
-                                <TextBox 
+                            <TextBlock 
                                     Name="txtFirstName" 
-                                    Text="{Binding FirstName}" 
+                                    Text="{Binding Person.FirstName}" 
                                     Height="31" 
                                     Width="100"/>
-                                <TextBox 
+                            <TextBlock 
                                     Name="txtLastName"
-                                    Text="{Binding LastName}" 
+                                    Text="{Binding Person.LastName}" 
                                     Height="31" 
                                     Width="100"/>
-                                <TextBox 
+                            <TextBlock 
                                     Name="txtUsername" 
-                                    Text="{Binding Username}"
+                                    Text="{Binding Person.Username}"
                                     Height="31"
                                     Width="100"/>
-                                <TextBox 
+                            <TextBlock 
                                     Name="txtPassword" 
-                                    Text="{Binding Password}"
+                                    Text="{Binding Person.Password}"
                                     Height="31"
                                     Width="100"/>
-                                <TextBox 
+                            <TextBlock 
                                     Name="txtIdClass" 
                                     Text="{Binding IdClass}"
                                     Height="31"
                                     Width="50"/>
-                            </WrapPanel>
-                        </Button>
+                        </WrapPanel>
+
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

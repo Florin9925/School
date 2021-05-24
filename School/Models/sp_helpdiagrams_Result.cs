@@ -10,20 +10,13 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class sp_helpdiagrams_Result
     {
-        public Teacher()
-        {
-            this.Classes = new HashSet<Class>();
-            this.Teacher_Subject = new HashSet<Teacher_Subject>();
-        }
-    
-        public int id_teacher { get; set; }
-    
-        public virtual ICollection<Class> Classes { get; set; }
-        public virtual Person Person { get; set; }
-        public virtual ICollection<Teacher_Subject> Teacher_Subject { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
