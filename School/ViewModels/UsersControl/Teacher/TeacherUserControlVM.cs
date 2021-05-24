@@ -1,4 +1,5 @@
 ﻿using School.Helpers;
+using School.Models;
 using School.Views.LogInView;
 using School.Views.MasterView;
 using School.Views.TeacherView;
@@ -7,12 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace School.ViewModels.UsersControl.Teacher
 {
     class TeacherUserControlVM
     {
+        public static int CURRENT_TEACHER { get; set; }
+
+        SchoolDBEntities context = new SchoolDBEntities();
+
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand
         {
@@ -28,11 +34,16 @@ namespace School.ViewModels.UsersControl.Teacher
 
         public void OpenUserControl(object obj)
         {
+            var isMaster = context.GetClassWhereMastert(CURRENT_TEACHER).ToList<int?>();
+
             string nr = obj as string;
             switch (nr)
             {
                 case "1":
-                    Switcher.Switch(new MasterUserControl());
+                    if (isMaster[0] != null)
+                        Switcher.Switch(new MasterUserControl());
+                    else
+                        MessageBox.Show("This teacher is not a classmaster!");
                     break;
                 case "2":
                     Switcher.Switch(new LogInUserControl());

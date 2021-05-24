@@ -11,9 +11,12 @@ namespace School.Models
 {
     using System;
     
-    public partial class ViewCorigentStudents_Result
+    public partial class sp_helpdiagrams_Result
     {
-        public int fk_student { get; set; }
-        public Nullable<int> Column1 { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

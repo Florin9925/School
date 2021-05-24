@@ -11,11 +11,9 @@ namespace School.Models
 {
     using System;
     
-    public partial class GetAllStudentsInAClass_Result
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int id_student { get; set; }
-        public Nullable<bool> is_debtor { get; set; }
-        public Nullable<double> annual_grade { get; set; }
-        public Nullable<int> fk_class { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

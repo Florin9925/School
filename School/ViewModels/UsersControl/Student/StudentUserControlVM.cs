@@ -24,7 +24,6 @@ namespace School.ViewModels.UsersControl.Student
 
         public StudentUserControlVM()
         {
-            CURRENT_STUDENT = 160;
             Subjects = new ObservableCollection<SubjectVM>();
 
             var temp = context.StudentViewSubjects(CURRENT_STUDENT);

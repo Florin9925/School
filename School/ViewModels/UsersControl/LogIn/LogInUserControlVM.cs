@@ -1,4 +1,7 @@
 ﻿using School.Helpers;
+using School.Models;
+using School.ViewModels.UsersControl.Student;
+using School.ViewModels.UsersControl.Teacher;
 using School.Views.AdminView;
 using School.Views.LogInView;
 using School.Views.StudentView;
@@ -14,7 +17,7 @@ namespace School.ViewModels.UsersControl.LogIn
 {
     class LogInUserControlVM
     {
-        LogInUserControl logInUserControl { get; set; }
+        SchoolDBEntities context = new SchoolDBEntities();
 
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand
@@ -32,7 +35,6 @@ namespace School.ViewModels.UsersControl.LogIn
         public void OpenUserControl(object obj)
         {
             string nr = obj as string;
-            logInUserControl = Switcher.pageSwitcher.Content as LogInUserControl;
 
             switch (nr)
             {
@@ -40,15 +42,35 @@ namespace School.ViewModels.UsersControl.LogIn
                     Switcher.pageSwitcher.Close();
                     break;
                 case "2":
-                    if (logInUserControl == null)
-                        break;
-                    if (logInUserControl.textBoxEmail.Text.Equals("admin"))
-                        Switcher.Switch(new AdminUserControl());
-                    else if (logInUserControl.textBoxEmail.Text.Equals("teacher"))
-                        Switcher.Switch(new TeacherUserControl());
-                    else
-                        Switcher.Switch(new StudentUserControl());
+                    LogIn();
                     break;
+            }
+
+
+        }
+        public void LogIn()
+        {
+
+            LogInUserControl logInUserControl = Switcher.pageSwitcher.Content as LogInUserControl;
+
+            var userId = context.CheckCredentials(logInUserControl.textBoxEmail.Text, logInUserControl.passwordBox.Password).ToList<int?>();
+
+            if (logInUserControl == null)
+                return;
+            var role = context.FindRole(userId[0]).ToList<String>();
+            if (role[0].Equals("admin"))
+                Switcher.Switch(new AdminUserControl());
+            else
+            if (role[0].Equals("teacher"))
+            {
+                TeacherUserControlVM.CURRENT_TEACHER = (int)userId[0];
+                Switcher.Switch(new TeacherUserControl());
+            }
+            else
+            {
+                StudentUserControlVM.CURRENT_STUDENT = (int)userId[0];
+                Switcher.Switch(new StudentUserControl());
+
             }
         }
     }

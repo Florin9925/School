@@ -38,6 +38,7 @@ namespace School.Models
         public DbSet<Situation_Subject> Situation_Subject { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Teacher_Subject> Teacher_Subject { get; set; }
     
@@ -94,35 +95,6 @@ namespace School.Models
                 new ObjectParameter("fkClass", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddStudent", idPersonParameter, fkClassParameter);
-        }
-    
-        public virtual int AdminAddStudentWithPerson(Nullable<int> idStudent, Nullable<int> fkClass, string firstName, string lastName, string username, string password)
-        {
-            var idStudentParameter = idStudent.HasValue ?
-                new ObjectParameter("idStudent", idStudent) :
-                new ObjectParameter("idStudent", typeof(int));
-    
-            var fkClassParameter = fkClass.HasValue ?
-                new ObjectParameter("fkClass", fkClass) :
-                new ObjectParameter("fkClass", typeof(int));
-    
-            var firstNameParameter = firstName != null ?
-                new ObjectParameter("firstName", firstName) :
-                new ObjectParameter("firstName", typeof(string));
-    
-            var lastNameParameter = lastName != null ?
-                new ObjectParameter("lastName", lastName) :
-                new ObjectParameter("lastName", typeof(string));
-    
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddStudentWithPerson", idStudentParameter, fkClassParameter, firstNameParameter, lastNameParameter, usernameParameter, passwordParameter);
         }
     
         public virtual int AdminAddSubject(Nullable<int> idSubject, string name, Nullable<int> term)
@@ -358,7 +330,7 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Calculate_Result>("Calculate", idTeacherParameter, idStudentParameter);
         }
     
-        public virtual int CheckCredentials(string username, string password)
+        public virtual ObjectResult<Nullable<int>> CheckCredentials(string username, string password)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
@@ -368,7 +340,7 @@ namespace School.Models
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CheckCredentials", usernameParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CheckCredentials", usernameParameter, passwordParameter);
         }
     
         public virtual int DeleteMaterial(Nullable<int> idMaterial)
@@ -378,6 +350,19 @@ namespace School.Models
                 new ObjectParameter("idMaterial", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteMaterial", idMaterialParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> FindLoginID(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("FindLoginID", usernameParameter, passwordParameter);
         }
     
         public virtual ObjectResult<string> FindRole(Nullable<int> idPerson)
@@ -429,13 +414,22 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAllFromTable", tableNameParameter);
         }
     
-        public virtual ObjectResult<GetAllStudentsInAClass_Result> GetAllStudentsInAClass(Nullable<int> idTeacher)
+        public virtual ObjectResult<GetAllStudents_Result> GetAllStudents(Nullable<int> idClass)
+        {
+            var idClassParameter = idClass.HasValue ?
+                new ObjectParameter("idClass", idClass) :
+                new ObjectParameter("idClass", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudents_Result>("GetAllStudents", idClassParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> GetAllStudentsInAClass(Nullable<int> idTeacher)
         {
             var idTeacherParameter = idTeacher.HasValue ?
                 new ObjectParameter("idTeacher", idTeacher) :
                 new ObjectParameter("idTeacher", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentsInAClass_Result>("GetAllStudentsInAClass", idTeacherParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetAllStudentsInAClass", idTeacherParameter);
         }
     
         public virtual ObjectResult<GetAllTeacherSubject_Result> GetAllTeacherSubject(Nullable<int> idTeacher)
@@ -473,13 +467,13 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAssignment", idTeacherParameter, idSubjectParameter, idClassParameter);
         }
     
-        public virtual int GetClassWhereMastert(Nullable<int> idTeacher)
+        public virtual ObjectResult<Nullable<int>> GetClassWhereMastert(Nullable<int> idTeacher)
         {
             var idTeacherParameter = idTeacher.HasValue ?
                 new ObjectParameter("idTeacher", idTeacher) :
                 new ObjectParameter("idTeacher", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetClassWhereMastert", idTeacherParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetClassWhereMastert", idTeacherParameter);
         }
     
         public virtual ObjectResult<GetExpelledStudent_Result> GetExpelledStudent(Nullable<int> idClass, Nullable<int> allowAbsences)
@@ -528,6 +522,109 @@ namespace School.Models
                 new ObjectParameter("idTeacher", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MakeConnectionTeacherSubject", idSubjectParameter, idTeacherParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual ObjectResult<StudentViewAbsences_Result> StudentViewAbsences(Nullable<int> idStudent)
@@ -752,13 +849,13 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewClassHierachy_Result>("ViewClassHierachy", idClassParameter);
         }
     
-        public virtual ObjectResult<ViewCorigentStudents_Result> ViewCorigentStudents(Nullable<int> idClassmaster)
+        public virtual ObjectResult<Nullable<int>> ViewCorigentStudents(Nullable<int> idClassmaster)
         {
             var idClassmasterParameter = idClassmaster.HasValue ?
                 new ObjectParameter("idClassmaster", idClassmaster) :
                 new ObjectParameter("idClassmaster", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewCorigentStudents_Result>("ViewCorigentStudents", idClassmasterParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ViewCorigentStudents", idClassmasterParameter);
         }
     }
 }
