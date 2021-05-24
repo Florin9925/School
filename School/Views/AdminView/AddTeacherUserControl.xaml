@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="School.Views.AdminView.EditTeacherSubjectUserControl"
+﻿<UserControl x:Class="School.Views.AdminView.AddTeacherUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,18 +6,16 @@
              xmlns:local="clr-namespace:School.ViewModels.UsersControl.Admin"
              xmlns:local_convert ="clr-namespace:School.Converters"
              mc:Ignorable="d" 
-             Style="{StaticResource MyUserControlStyle}">
-
-    <UserControl.Resources>
-        <local_convert:SubjectConverter x:Key="SubjectConverter"/>
-    </UserControl.Resources>
+            Style="{StaticResource MyUserControlStyle}">
     
     <UserControl.DataContext>
-        <local:EditTeacherSubjectUserControlVM/>
+        <local:AddTeacherUserControlVM/>
     </UserControl.DataContext>
 
 
-    
+    <UserControl.Resources>
+        <local_convert:TeacherConverter x:Key="TeacherConverter"/>
+    </UserControl.Resources>
 
     <Grid Style="{StaticResource MyGridStyle}">
 
@@ -56,79 +54,27 @@
         </StackPanel>
 
 
+        <!--teacher-->
+
         <TextBlock  
             Grid.Row="1" 
             Grid.ColumnSpan="4"
-            Grid.Column="0"
             Height="32"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Text="List of subject:" 
+            Text="Add teacher:" 
             FontSize="20" 
             TextAlignment="Center"
             FontStretch="ExtraCondensed" 
             Width="Auto"/>
 
-        <WrapPanel
-            Grid.Row ="2" 
-            Grid.Column="0" 
-            Grid.ColumnSpan="4" 
-            Margin="25,0,25,0"
-            HorizontalAlignment="Center">
-            <WrapPanel>
-                <Label
-                    Content="Id" 
-                    Height="31" 
-                    Width="100" 
-                    BorderThickness="0" />
-                <Label 
-                    Content="Name" 
-                    Height="31" 
-                    Width="200" 
-                    BorderThickness="0"/>
-                <Label 
-                    Content="Term" 
-                    Height="31" 
-                    Width="200" 
-                    BorderThickness="0"/>
-
-            </WrapPanel>
-            <ListBox 
-            Grid.Row ="2" 
-            Grid.Column="2"
-            Grid.ColumnSpan="4" 
-            Name="listSubjects" 
-            ItemsSource="{Binding Subjects}"
-            Width="550" Height="220">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock
-                            Name="txtIdSubject"
-                            Text="{Binding IdSubject}"
-                            Height="31"
-                            Width="100"/>
-                            <TextBlock 
-                            Name="txtNameSubject"  
-                            Text="{Binding Name}" 
-                            Height="31" 
-                            Width="200"/>
-                            <TextBlock
-                            Name="txtTermSubject" 
-                            Text="{Binding Term}"
-                            Height="31" 
-                            Width="200"/>
-
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </WrapPanel>
+       
+            
 
         <StackPanel 
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="0"
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             HorizontalAlignment="Center" 
             VerticalAlignment="Center">
             <TextBlock 
@@ -136,7 +82,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
                 Margin="0,0,0,0" 
-                Text="Id subject:"  
+                Text="Id teacher:"  
                 FontSize="20"
                 TextAlignment="Center" 
                 FontStretch="ExtraCondensed" 
@@ -146,7 +92,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Margin="0,5,0,0" 
-                Text="Name subject:"  
+                Text="First name teacher:"  
                 FontSize="20"
                 TextAlignment="Center" 
                 FontStretch="ExtraCondensed" 
@@ -156,93 +102,113 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
                 Margin="0,5,0,0" 
-                Text="Term subject:"
+                Text="Last name teacher:"
                 FontSize="20" 
                 TextAlignment="Center"
                 FontStretch="ExtraCondensed" 
                 Width="Auto"/>
-
+            <TextBlock  
+                Height="32" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Margin="0,5,0,0"
+                Text="Username:" 
+                FontSize="20" 
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
+            <TextBlock 
+                Height="32"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,5,0,0" 
+                Text="Password:" 
+                FontSize="20"
+                TextAlignment="Center" 
+                FontStretch="ExtraCondensed" 
+                Width="Auto"/>
         </StackPanel>
 
         <StackPanel
-            Grid.Row="3" 
-            Grid.RowSpan="2"
+            Grid.Row="2" 
             Grid.Column="1" 
             Grid.ColumnSpan="2" 
+            Grid.RowSpan="3"
+            
             HorizontalAlignment="Center" 
             VerticalAlignment="Center">
             <TextBox 
-                Name="textBoxIdSubject"
+                Name="textBoxIdTeacher"
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
                 Margin="0,0,0,0"
                 Width="300" 
-                Height="32" 
-                Text="{Binding ElementName=listSubjects, Path=SelectedItem.IdSubject}"/>
+                Height="32"
+                Text="{Binding ElementName=listTeachers, Path=SelectedItem.IdTeacher}"/>
             <TextBox 
-                Name="textBoxNameSubject" 
+                Name="textBoxFirstNameTeacher" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 Margin="0,5,0,0" 
                 Width="300" 
-                Height="32" 
-                Text="{Binding ElementName=listSubjects, Path=SelectedItem.Name}"/>
-
+                Height="32"
+                Text="{Binding ElementName=listTeachers, Path=SelectedItem.Person.FirstName}"/>
             <TextBox
-                Name="textBoxTermSubject" 
+                Name="textBoxLastNameTeacher" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
                 Margin="0,5,0,0"
                 Width="300" 
-                Height="32"         
-                Text="{Binding ElementName=listSubjects, Path=SelectedItem.Term}"/>
+                Height="32" 
+                Text="{Binding ElementName=listTeachers, Path=SelectedItem.Person.LastName}"/>
 
+            <TextBox 
+                Name="textBoxUsernameTeacher"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,5,0,0" 
+                Width="300" 
+                Height="32" 
+                Text="{Binding ElementName=listTeachers, Path=SelectedItem.Person.Username}"/>
+
+            <TextBox 
+                Name="textBoxPasswordTeacher" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Margin="0,5,0,0"
+                Width="300" 
+                Height="32" 
+                Text="{Binding ElementName=listTeachers, Path=SelectedItem.Person.Password}"/>
 
         </StackPanel>
 
         <StackPanel 
-            Grid.Row="3"
-            Grid.RowSpan="2"
-            Grid.Column="3" 
+            Grid.Row="2"
+            Grid.Column="3"
+            Grid.RowSpan="3"
+            
             HorizontalAlignment="Center"
             VerticalAlignment="Center">
             <Button
-                Content="Edit subject"
+                Content="Add teacher"
                 Height="25"
-                Margin="0,10,0,0" 
+                Margin="0,0,0,0" 
                 Width="150" 
-                Command="{Binding EditSubject}">
+                Command="{Binding AddTeacher}">
                 <Button.CommandParameter>
-                <MultiBinding Converter="{StaticResource SubjectConverter}">
-                    <Binding ElementName="textBoxIdSubject" Path="Text"/>
-                    <Binding ElementName="textBoxNameSubject" Path="Text"/>
-                    <Binding ElementName="textBoxTermSubject" Path="Text"/>
-                </MultiBinding>
-                </Button.CommandParameter>
-            </Button>
-            <Button 
-                Content="Delete subject" 
-                Height="25" 
-                Margin="0,20,0,0" 
-                Width="150" 
-                Command="{Binding DeleteSubject}"
-                >
-                <Button.CommandParameter>
-                    <MultiBinding Converter="{StaticResource SubjectConverter}">
-                        <Binding ElementName="textBoxIdSubject" Path="Text"/>
-                        <Binding ElementName="textBoxNameSubject" Path="Text"/>
-                        <Binding ElementName="textBoxTermSubject" Path="Text"/>
+                    <MultiBinding Converter="{StaticResource TeacherConverter}">
+                        <Binding ElementName="textBoxIdTeacher" Path="Text"/>
+                        <Binding ElementName="textBoxFirstNameTeacher" Path="Text"/>
+                        <Binding ElementName="textBoxLastNameTeacher" Path="Text"/>
+                        <Binding ElementName="textBoxUsernameTeacher" Path="Text"/>
+                        <Binding ElementName="textBoxPasswordTeacher" Path="Text"/>
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
-            <Button 
-                Content="Add subject"
-                Height="25" 
-                Margin="0,20,0,0" 
-                Width="150" 
-                Command="{Binding OpenUserControlCommand}" 
-                CommandParameter="4"/>
+            
         </StackPanel>
 
     </Grid>
+    
+    
 </UserControl>

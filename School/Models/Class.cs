@@ -24,7 +24,7 @@ namespace School.Models
         public string name { get; set; }
         public int year { get; set; }
         public string field { get; set; }
-        public int fk_classmaster { get; set; }
+        public Nullable<int> fk_classmaster { get; set; }
     
         public virtual ICollection<Assignment> Assignments { get; set; }
         public virtual Teacher Teacher { get; set; }

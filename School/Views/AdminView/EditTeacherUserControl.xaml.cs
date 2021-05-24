@@ -1,7 +1,4 @@
-﻿using School.Helpers;
-using School.Views.AdminView;
-using School.Views.LogInView;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace School.Views.MainWindow
+namespace School.Views.AdminView
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EditTeacherUserControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EditTeacherUserControl : UserControl
     {
-        public MainWindow()
+        public EditTeacherUserControl()
         {
             InitializeComponent();
-            Switcher.pageSwitcher = this;
-            Switcher.Switch(new EditTeacherUserControl());
-
-        }
-        public void Navigate(UserControl newUserControl)
-        {
-            this.Content = newUserControl;
         }
     }
 }

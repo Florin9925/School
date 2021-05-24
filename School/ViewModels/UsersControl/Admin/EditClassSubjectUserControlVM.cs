@@ -1,8 +1,11 @@
 ﻿using School.Helpers;
+using School.Models;
+using School.Models.Actions.Admin;
 using School.Views.AdminView;
 using School.Views.LogInView;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,36 @@ namespace School.ViewModels.UsersControl.Admin
 {
     class EditClassSubjectUserControlVM
     {
+
+        ObservableCollection<ClassVM> Classes;
+
+        private EditClassSubjectAction adminActions = new EditClassSubjectAction();
+
+        SchoolDBEntities context = new SchoolDBEntities();
+
+        public EditClassSubjectUserControlVM()
+        {
+            //Classes = new ObservableCollection<ClassVM>();
+
+            //var temp = context.GetAllClasses();
+
+            //foreach (var @class in temp)
+            //{
+            //    Classes.Add(new ClassVM()
+            //    {
+            //        IdClass = student.,
+            //        Person = new ClassVM()
+            //        {
+            //            FirstName = student.first_name,
+            //            LastName = student.last_name,
+            //            Password = student.password,
+            //            Username = student.username
+            //        },
+            //        IdClass = (int)student.fk_class
+            //    }); ;
+
+            //}
+        }
 
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand

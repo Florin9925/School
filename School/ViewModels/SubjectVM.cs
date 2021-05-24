@@ -24,6 +24,15 @@ namespace School.ViewModels
             get => _IdSubject;
             set => SetProperty(ref _IdSubject, value);
         }
+        
+        
+        private int _IdTeacher;
+        public int IdTeacher
+        {
+            get => _IdTeacher;
+            set => SetProperty(ref _IdTeacher, value);
+        }
+
 
         private string _Name;
         public string Name
@@ -38,5 +47,6 @@ namespace School.ViewModels
             get => _Term;
             set => SetProperty(ref _Term, value);
         }
+
     }
 }

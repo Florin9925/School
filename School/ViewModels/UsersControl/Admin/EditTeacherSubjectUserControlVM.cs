@@ -1,5 +1,6 @@
 ﻿using School.Helpers;
 using School.Models;
+using School.Models.Actions.Admin;
 using School.Views.AdminView;
 using School.Views.LogInView;
 using System;
@@ -14,65 +15,62 @@ using System.Windows.Input;
 namespace School.ViewModels.UsersControl.Admin
 {
 
-    class EditTeacherSubjectUserControlVM : BaseVM
+    class EditTeacherSubjectUserControlVM
     {
-        public ObservableCollection<TeacherVM> Teachers { get; set; }
-        static public ObservableCollection<SubjectVM> Subjects { get; set; }
+        public ObservableCollection<SubjectVM> Subjects { get; set; }
 
-        public static int CURRENT_TEACHER { get; set; }
+        EditTeacherSubjectAction action = new EditTeacherSubjectAction();
+
 
         SchoolDBEntities context = new SchoolDBEntities();
 
         public EditTeacherSubjectUserControlVM()
         {
-            Teachers = new ObservableCollection<TeacherVM>();
-
             Subjects = new ObservableCollection<SubjectVM>();
 
-            var temp = context.AdminGetAllTeachers();
-            foreach (var teacher in temp)
+            var temp = context.GetAllTeacherSubject(EditTeacherUserControlVM.CURRENT_TEACHER);
+
+            foreach (var subject in temp)
             {
-                Teachers.Add(new TeacherVM()
+                Subjects.Add(new SubjectVM()
                 {
-                    IdTeacher = teacher.id_person,
-                    Person = new PersonVM()
-                    {
-                        FirstName = teacher.first_name,
-                        LastName = teacher.last_name,
-                        Password = teacher.password,
-                        Username = teacher.username
-                    }
-                });
+                    IdSubject = subject.id_subject,
+                    Name = subject.name,
+                    Term = subject.term
+                }
+                );
             }
-            CURRENT_TEACHER = -1;
 
         }
-     
 
-
-        static int x = 5;
-        public bool AddSubject
+        private ICommand _EditSubject;
+        public ICommand EditSubject
         {
             get
             {
-                var temp = context.GetAllTeacherSubject(x++);
-
-                foreach (var subject in temp)
+                if (_EditSubject == null)
                 {
-                    Subjects.Add(new SubjectVM()
-                    {
-                        IdSubject = subject.id_subject,
-                        Name = subject.name,
-                        Term = subject.term
-                    });
+                    _EditSubject = new RelayCommand(action.EditSubject);
                 }
 
-                return false;
+                return _EditSubject;
             }
         }
 
+        private ICommand _DeleteSubject;
+        public ICommand DeleteSubject
+        {
+            get
+            {
+                if (_DeleteSubject == null)
+                {
+                    _DeleteSubject = new RelayCommand(action.DeleteSubject);
+                }
 
-       
+                return _DeleteSubject;
+            }
+        }
+
 
 
         private ICommand openUserControlCommand;
@@ -94,7 +92,7 @@ namespace School.ViewModels.UsersControl.Admin
             switch (nr)
             {
                 case "1":
-                    Switcher.Switch(new AdminUserControl());
+                    Switcher.Switch(new EditTeacherUserControl());
                     break;
                 case "2":
                     Switcher.Switch(new LogInUserControl());
@@ -102,8 +100,9 @@ namespace School.ViewModels.UsersControl.Admin
                 case "3":
                     Switcher.pageSwitcher.Close();
                     break;
-
-
+                case "4":
+                    Switcher.Switch(new AddTeacherSubjectUserControl()); ;
+                    break;
             }
         }
     }

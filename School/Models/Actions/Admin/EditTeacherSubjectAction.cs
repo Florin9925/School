@@ -12,23 +12,35 @@ namespace School.Models.Actions.Admin
 {
     class EditTeacherSubjectAction
     {
-        public void EditTeacher(object obj)
+        public void EditSubject(object obj)
         {
-            TeacherVM teacher = obj as TeacherVM;
+            SubjectVM subject = obj as SubjectVM;
 
             SchoolDBEntities context = new SchoolDBEntities();
 
-            context.AdminModifyPerson(teacher.IdTeacher, teacher.Person.FirstName, teacher.Person.LastName, teacher.Person.Username, teacher.Person.Password);
+            context.AdminModifySubject(subject.IdSubject, subject.Name, subject.Term);
 
         }
 
-        public void DeleteTeacher(object obj)
+        public void DeleteSubject(object obj)
         {
-            TeacherVM teacher = obj as TeacherVM;
+            SubjectVM subject = obj as SubjectVM;
 
             SchoolDBEntities context = new SchoolDBEntities();
 
-            //delete
+            context.AdminDeleteSubject(subject.IdSubject);
+
+            Switcher.Switch(new EditTeacherSubjectUserControl());
+        }
+        
+        public void AddSubject(object obj)
+        {
+            SubjectVM subject = obj as SubjectVM;
+
+            SchoolDBEntities context = new SchoolDBEntities();
+
+            context.AdminAddSubject(subject.IdSubject, subject.Name, subject.Term);
+            context.MakeConnectionTeacherSubject(subject.IdSubject, EditTeacherUserControlVM.CURRENT_TEACHER);
 
             Switcher.Switch(new EditTeacherSubjectUserControl());
         }

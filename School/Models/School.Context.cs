@@ -96,6 +96,35 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddStudent", idPersonParameter, fkClassParameter);
         }
     
+        public virtual int AdminAddStudentWithPerson(Nullable<int> idStudent, Nullable<int> fkClass, string firstName, string lastName, string username, string password)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            var fkClassParameter = fkClass.HasValue ?
+                new ObjectParameter("fkClass", fkClass) :
+                new ObjectParameter("fkClass", typeof(int));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("firstName", firstName) :
+                new ObjectParameter("firstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("lastName", lastName) :
+                new ObjectParameter("lastName", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddStudentWithPerson", idStudentParameter, fkClassParameter, firstNameParameter, lastNameParameter, usernameParameter, passwordParameter);
+        }
+    
         public virtual int AdminAddSubject(Nullable<int> idSubject, string name, Nullable<int> term)
         {
             var idSubjectParameter = idSubject.HasValue ?
@@ -113,13 +142,29 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddSubject", idSubjectParameter, nameParameter, termParameter);
         }
     
-        public virtual int AdminAddTeacher(Nullable<int> idTeacher)
+        public virtual int AdminAddTeacher(Nullable<int> idTeacher, string firstName, string lastName, string username, string password)
         {
             var idTeacherParameter = idTeacher.HasValue ?
                 new ObjectParameter("idTeacher", idTeacher) :
                 new ObjectParameter("idTeacher", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddTeacher", idTeacherParameter);
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("firstName", firstName) :
+                new ObjectParameter("firstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("lastName", lastName) :
+                new ObjectParameter("lastName", typeof(string));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddTeacher", idTeacherParameter, firstNameParameter, lastNameParameter, usernameParameter, passwordParameter);
         }
     
         public virtual int AdminCreateTeacherSubject(Nullable<int> idTeacher, Nullable<int> idSubject)
@@ -470,6 +515,19 @@ namespace School.Models
                 new ObjectParameter("term", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetSubject", nameParameter, termParameter);
+        }
+    
+        public virtual int MakeConnectionTeacherSubject(Nullable<int> idSubject, Nullable<int> idTeacher)
+        {
+            var idSubjectParameter = idSubject.HasValue ?
+                new ObjectParameter("idSubject", idSubject) :
+                new ObjectParameter("idSubject", typeof(int));
+    
+            var idTeacherParameter = idTeacher.HasValue ?
+                new ObjectParameter("idTeacher", idTeacher) :
+                new ObjectParameter("idTeacher", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MakeConnectionTeacherSubject", idSubjectParameter, idTeacherParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

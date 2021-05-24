@@ -39,7 +39,7 @@
           <Property Name="name" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="year" Type="int" Nullable="false" />
           <Property Name="field" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="fk_classmaster" Type="int" Nullable="false" />
+          <Property Name="fk_classmaster" Type="int" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -112,7 +112,9 @@
           <Property Name="fk_subject" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Absence_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Absence" Type="Self.Absence" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -136,7 +138,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Admin_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -148,7 +152,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Assignment_Class">
-          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
@@ -172,7 +178,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Class_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <End Role="Class" Type="Self.Class" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
@@ -184,7 +190,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grade_Situation-Subject">
-          <End Role="Situation-Subject" Type="Self.Situation-Subject" Multiplicity="1" />
+          <End Role="Situation-Subject" Type="Self.Situation-Subject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Situation-Subject">
@@ -196,7 +204,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Material_Assignment">
-          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Assignment">
@@ -208,7 +218,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Situation-Subject_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Situation-Subject" Type="Self.Situation-Subject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -244,7 +256,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -256,7 +270,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teacher_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -280,7 +296,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teacher-Subject_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Teacher-Subject" Type="Self.Teacher-Subject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
@@ -307,6 +325,14 @@
           <Parameter Name="idPerson" Type="int" Mode="In" />
           <Parameter Name="fkClass" Type="int" Mode="In" />
         </Function>
+        <Function Name="AdminAddStudentWithPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idStudent" Type="int" Mode="In" />
+          <Parameter Name="fkClass" Type="int" Mode="In" />
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="AdminAddSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idSubject" Type="int" Mode="In" />
           <Parameter Name="name" Type="varchar" Mode="In" />
@@ -314,6 +340,10 @@
         </Function>
         <Function Name="AdminAddTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
+          <Parameter Name="firstName" Type="varchar" Mode="In" />
+          <Parameter Name="lastName" Type="varchar" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="AdminCreateTeacherSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
@@ -423,6 +453,10 @@
         <Function Name="GetSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar" Mode="In" />
           <Parameter Name="term" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MakeConnectionTeacherSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idSubject" Type="int" Mode="In" />
+          <Parameter Name="idTeacher" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -642,7 +676,7 @@
           <Property Name="name" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="year" Type="Int32" Nullable="false" />
           <Property Name="field" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fk_classmaster" Type="Int32" Nullable="false" />
+          <Property Name="fk_classmaster" Type="Int32" />
           <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignment_Class" FromRole="Class" ToRole="Assignment" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_Class_Teacher" FromRole="Class" ToRole="Teacher" />
           <NavigationProperty Name="Students" Relationship="Self.FK_Student_Class" FromRole="Class" ToRole="Student" />
@@ -739,7 +773,9 @@
           <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Subject_Teacher" FromRole="Teacher_Subject" ToRole="Teacher" />
         </EntityType>
         <Association Name="FK_Absence_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Absence" Type="Self.Absence" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -763,7 +799,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Admin_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -775,7 +813,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Assignment_Class">
-          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Assignment" Type="Self.Assignment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
@@ -799,7 +839,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Material_Assignment">
-          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1" />
+          <End Role="Assignment" Type="Self.Assignment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Assignment">
@@ -811,7 +853,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Class_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <End Role="Class" Type="Self.Class" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
@@ -835,7 +877,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grade_Situation_Subject">
-          <End Role="Situation_Subject" Type="Self.Situation_Subject" Multiplicity="1" />
+          <End Role="Situation_Subject" Type="Self.Situation_Subject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Grade" Type="Self.Grade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Situation_Subject">
@@ -847,7 +891,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -859,7 +905,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teacher_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -871,7 +919,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Situation_Subject_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Situation_Subject" Type="Self.Situation_Subject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -907,7 +957,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teacher_Subject_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Teacher_Subject" Type="Self.Teacher_Subject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
@@ -1007,6 +1059,14 @@
             <Parameter Name="idPerson" Mode="In" Type="Int32" />
             <Parameter Name="fkClass" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="AdminAddStudentWithPerson">
+            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+            <Parameter Name="fkClass" Mode="In" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="AdminAddSubject">
             <Parameter Name="idSubject" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
@@ -1014,6 +1074,10 @@
           </FunctionImport>
           <FunctionImport Name="AdminAddTeacher">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AdminCreateTeacherSubject">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
@@ -1122,6 +1186,10 @@
           <FunctionImport Name="GetSubject">
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="term" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MakeConnectionTeacherSubject">
+            <Parameter Name="idSubject" Mode="In" Type="Int32" />
+            <Parameter Name="idTeacher" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1489,6 +1557,7 @@
           <FunctionImportMapping FunctionImportName="AddMaterial" FunctionName="SchoolDBModel.Store.AddMaterial" />
           <FunctionImportMapping FunctionImportName="AdminAddPerson" FunctionName="SchoolDBModel.Store.AdminAddPerson" />
           <FunctionImportMapping FunctionImportName="AdminAddStudent" FunctionName="SchoolDBModel.Store.AdminAddStudent" />
+          <FunctionImportMapping FunctionImportName="AdminAddStudentWithPerson" FunctionName="SchoolDBModel.Store.AdminAddStudentWithPerson" />
           <FunctionImportMapping FunctionImportName="AdminAddSubject" FunctionName="SchoolDBModel.Store.AdminAddSubject" />
           <FunctionImportMapping FunctionImportName="AdminAddTeacher" FunctionName="SchoolDBModel.Store.AdminAddTeacher" />
           <FunctionImportMapping FunctionImportName="AdminCreateTeacherSubject" FunctionName="SchoolDBModel.Store.AdminCreateTeacherSubject" />
@@ -1630,6 +1699,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetSubject" FunctionName="SchoolDBModel.Store.GetSubject" />
+          <FunctionImportMapping FunctionImportName="MakeConnectionTeacherSubject" FunctionName="SchoolDBModel.Store.MakeConnectionTeacherSubject" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SchoolDBModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SchoolDBModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SchoolDBModel.Store.sp_dropdiagram" />
