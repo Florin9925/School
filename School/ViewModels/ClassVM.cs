@@ -14,6 +14,7 @@ namespace School.ViewModels
             _Name = @class.name;
             _Year = @class.year;
             _Field = @class.field;
+            _FkClassmaster = (int)@class.fk_classmaster;
         }
         public ClassVM()
         {
@@ -51,12 +52,11 @@ namespace School.ViewModels
             set => SetProperty(ref _Field, value);
         }
 
-
-        //private int _FkClassmaster;
-        //public int FkClassmaster
-        //{
-        //    get => _FkClassmaster;
-        //    set => SetProperty(ref _FkClassmaster, value);
-        //}
+        private int _FkClassmaster;
+        public int FkClassmaster
+        {
+            get => _FkClassmaster;
+            set => SetProperty(ref _FkClassmaster, value);
+        }
     }
 }

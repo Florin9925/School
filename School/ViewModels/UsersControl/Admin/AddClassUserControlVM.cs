@@ -1,4 +1,5 @@
 ﻿using School.Helpers;
+using School.Models.Actions.Admin;
 using School.Views.AdminView;
 using School.Views.LogInView;
 using System;
@@ -10,8 +11,22 @@ using System.Windows.Input;
 
 namespace School.ViewModels.UsersControl.Admin
 {
-    class AdminUserControlVM
+    class AddClassUserControlVM : BaseVM
     {
+        private ICommand _AddClass;
+        public ICommand AddClass
+        {
+            get
+            {
+                if(_AddClass == null)
+                {
+                    _AddClass = new RelayCommand(new EditClassAction().AddClass);
+                }
+
+                return _AddClass;
+            }
+        }
+
         private ICommand openUserControlCommand;
         public ICommand OpenUserControlCommand
         {
@@ -31,21 +46,13 @@ namespace School.ViewModels.UsersControl.Admin
             switch (nr)
             {
                 case "1":
-                    Switcher.Switch(new LogInUserControl());
-                    break;
-                case "2":
-                    Switcher.pageSwitcher.Close();
-                    break;
-                case "3":
-                    Switcher.Switch(new EditStudentUserControl());
-                    break;
-                case "4":
-                    Switcher.Switch(new EditTeacherSubjectUserControl());
-                    break;
-                case "5":
                     Switcher.Switch(new EditClassUserControl());
                     break;
-                case "6":
+                case "2":
+                    Switcher.Switch(new LogInUserControl());
+                    break;
+                case "3":
+                    Switcher.pageSwitcher.Close();
                     break;
             }
         }
