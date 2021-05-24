@@ -232,25 +232,17 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminModifyPerson", idPersonParameter, firstNameParameter, lastNameParameter, usernameParameter, passwordParameter);
         }
     
-        public virtual int AdminModifyStudent(Nullable<int> idStudent, Nullable<bool> isDebtor, Nullable<int> annualGrade, Nullable<int> fkClass)
+        public virtual int AdminModifyStudent(Nullable<int> idStudent, Nullable<int> fkClass)
         {
             var idStudentParameter = idStudent.HasValue ?
                 new ObjectParameter("idStudent", idStudent) :
                 new ObjectParameter("idStudent", typeof(int));
     
-            var isDebtorParameter = isDebtor.HasValue ?
-                new ObjectParameter("isDebtor", isDebtor) :
-                new ObjectParameter("isDebtor", typeof(bool));
-    
-            var annualGradeParameter = annualGrade.HasValue ?
-                new ObjectParameter("annualGrade", annualGrade) :
-                new ObjectParameter("annualGrade", typeof(int));
-    
             var fkClassParameter = fkClass.HasValue ?
                 new ObjectParameter("fkClass", fkClass) :
                 new ObjectParameter("fkClass", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminModifyStudent", idStudentParameter, isDebtorParameter, annualGradeParameter, fkClassParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminModifyStudent", idStudentParameter, fkClassParameter);
         }
     
         public virtual int AdminModifySubject(Nullable<int> idSubject, string name, Nullable<int> term)
@@ -399,6 +391,15 @@ namespace School.Models
                 new ObjectParameter("idTeacher", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentsInAClass_Result>("GetAllStudentsInAClass", idTeacherParameter);
+        }
+    
+        public virtual ObjectResult<GetAllTeacherSubject_Result> GetAllTeacherSubject(Nullable<int> idTeacher)
+        {
+            var idTeacherParameter = idTeacher.HasValue ?
+                new ObjectParameter("idTeacher", idTeacher) :
+                new ObjectParameter("idTeacher", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllTeacherSubject_Result>("GetAllTeacherSubject", idTeacherParameter);
         }
     
         public virtual ObjectResult<GetAllUnjustifiedAbsencesFromClass_Result> GetAllUnjustifiedAbsencesFromClass(Nullable<int> idTeacher)

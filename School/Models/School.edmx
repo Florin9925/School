@@ -350,8 +350,6 @@
         </Function>
         <Function Name="AdminModifyStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idStudent" Type="int" Mode="In" />
-          <Parameter Name="isDebtor" Type="bit" Mode="In" />
-          <Parameter Name="annualGrade" Type="int" Mode="In" />
           <Parameter Name="fkClass" Type="int" Mode="In" />
         </Function>
         <Function Name="AdminModifySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -399,6 +397,9 @@
           <Parameter Name="tableName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetAllStudentsInAClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idTeacher" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllTeacherSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
         </Function>
         <Function Name="GetAllUnjustifiedAbsencesFromClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1049,8 +1050,6 @@
           </FunctionImport>
           <FunctionImport Name="AdminModifyStudent">
             <Parameter Name="idStudent" Mode="In" Type="Int32" />
-            <Parameter Name="isDebtor" Mode="In" Type="Boolean" />
-            <Parameter Name="annualGrade" Mode="In" Type="Int32" />
             <Parameter Name="fkClass" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AdminModifySubject">
@@ -1097,6 +1096,9 @@
             <Parameter Name="tableName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAllStudentsInAClass" ReturnType="Collection(SchoolDBModel.GetAllStudentsInAClass_Result)">
+            <Parameter Name="idTeacher" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllTeacherSubject" ReturnType="Collection(SchoolDBModel.GetAllTeacherSubject_Result)">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAllUnjustifiedAbsencesFromClass" ReturnType="Collection(SchoolDBModel.GetAllUnjustifiedAbsencesFromClass_Result)">
@@ -1269,6 +1271,14 @@
           <Property Type="Boolean" Name="is_debtor" Nullable="true" />
           <Property Type="Double" Name="annual_grade" Nullable="true" />
           <Property Type="Int32" Name="fk_class" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllTeacherSubject_Result">
+          <Property Type="Int32" Name="id_subject" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="term" Nullable="false" />
+          <Property Type="Int32" Name="id_teacher_subject" Nullable="false" />
+          <Property Type="Int32" Name="fk_teacher" Nullable="false" />
+          <Property Type="Int32" Name="fk_subject" Nullable="false" />
         </ComplexType>
         <ComplexType Name="GetAllUnjustifiedAbsencesFromClass_Result">
           <Property Type="Int32" Name="id_absence" Nullable="false" />
@@ -1568,6 +1578,18 @@
                 <ScalarProperty Name="is_debtor" ColumnName="is_debtor" />
                 <ScalarProperty Name="annual_grade" ColumnName="annual_grade" />
                 <ScalarProperty Name="fk_class" ColumnName="fk_class" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllTeacherSubject" FunctionName="SchoolDBModel.Store.GetAllTeacherSubject">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolDBModel.GetAllTeacherSubject_Result">
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="id_teacher_subject" ColumnName="id_teacher_subject" />
+                <ScalarProperty Name="fk_teacher" ColumnName="fk_teacher" />
+                <ScalarProperty Name="fk_subject" ColumnName="fk_subject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace School.Models.Actions
+namespace School.Models.Actions.Teacher
 {
-    class TeacherActions : PersonActions 
+    class TeacherAction
     {
     }
 }

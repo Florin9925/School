@@ -101,23 +101,23 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtIdClass" 
                             Text="{Binding Id}" 
                             Height="31" Width="30"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtNameClass"  
                             Text="{Binding Name}" 
                             Height="31" Width="110"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtYearClass" 
                             Text="{Binding Year}" 
                             Height="31" Width="50"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtFieldClass" 
                             Text="{Binding Field}" 
                             Height="31" Width="100"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtIdMaster" 
                             Text="{Binding Field}" 
                             Height="31" Width="50"/>
@@ -172,28 +172,28 @@
             Grid.Column="2" 
             Grid.ColumnSpan="2" 
             Name="listSubject" 
-            ItemsSource="{Binding Students}" 
+            ItemsSource="{Binding Subjects}" 
             Width="350" 
             Height="220">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtIdSubject" 
                             Text="{Binding Id}" 
                             Height="31" 
                             Width="40"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtNameSubject"  
                             Text="{Binding NameSubject}" 
                             Height="31" 
                             Width="150"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtTearm" 
                             Text="{Binding Tearm}" 
                             Height="31" 
                             Width="120"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtIdTeacher" 
                             Text="{Binding IdTeacher}" 
                             Height="31" 

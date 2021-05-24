@@ -1,5 +1,7 @@
 ﻿using School.Helpers;
 using School.Models;
+using School.Models.Actions;
+using School.Models.Actions.Admin;
 using School.Views.AdminView;
 using School.Views.LogInView;
 using System;
@@ -13,16 +15,11 @@ namespace School.ViewModels.UsersControl.Admin
 {
     class EditStudentUserControlVM : BaseVM
     {
+        private EditStudentAction adminActions = new EditStudentAction();
+
         SchoolDBEntities context = new SchoolDBEntities();
 
         public ObservableCollection<StudentVM> Students { get; set; }
-
-        EditStudentUserControl _editStudentUserControl;
-        EditStudentUserControl editStudentUserControl
-        {
-            get => _editStudentUserControl;
-            set => SetProperty(ref _editStudentUserControl, value);
-        }
 
         public EditStudentUserControlVM()
         {
@@ -41,47 +38,38 @@ namespace School.ViewModels.UsersControl.Admin
                         LastName = student.last_name,
                         Password = student.password,
                         Username = student.username
-                    }
-                });
+                    },
+                    IdClass = (int)student.fk_class
+                }); ;
+
             }
         }
 
-        private int _selectedIndex;
-        public int SelectedIndex
+        private ICommand _EditStudent;
+        public ICommand EditStudent
         {
-            get => _selectedIndex;
-
-            set
+            get
             {
-                if (_selectedIndex == value)
+                if (_EditStudent == null)
                 {
-                    return;
+                    _EditStudent = new RelayCommand(adminActions.EditStudent);
                 }
 
-                // At this point _selectedIndex is the old selected item's index
-
-                _selectedIndex = value;
-
-                // At this point _selectedIndex is the new selected item's index
-                SelectItem();
+                return _EditStudent;
             }
         }
 
-
-
-        public void SelectItem()
+        private ICommand _DeleteStudent;
+        public ICommand DeleteStudent
         {
-            editStudentUserControl = Switcher.pageSwitcher.Content as EditStudentUserControl;
-            editStudentUserControl.listStudents.SelectedItem= _selectedIndex;
-            var test = editStudentUserControl.listStudents.SelectedItem;
-          
-            editStudentUserControl.textBoxId.Text = (test as StudentVM).Id.ToString();
-            editStudentUserControl.textBoxFirstName.Text = (test as StudentVM).Person.FirstName;
-            editStudentUserControl.textBoxLastName.Text = (test as StudentVM).Person.LastName;
-            editStudentUserControl.textBoxPassword.Text = (test as StudentVM).Person.Password;
-            editStudentUserControl.textBoxUsername.Text = (test as StudentVM).Person.Username;
-
-
+            get
+            {
+                if (_DeleteStudent == null)
+                {
+                    _DeleteStudent = new RelayCommand(adminActions.DeleteStudent);
+                }
+                return _DeleteStudent;
+            }
         }
 
 
@@ -98,9 +86,10 @@ namespace School.ViewModels.UsersControl.Admin
             }
         }
 
+
+
         public void OpenUserControl(object obj)
         {
-            editStudentUserControl = Switcher.pageSwitcher.Content as EditStudentUserControl;
             string nr = obj as string;
             switch (nr)
             {
@@ -114,38 +103,12 @@ namespace School.ViewModels.UsersControl.Admin
                     Switcher.pageSwitcher.Close();
                     break;
                 case "4":
-                    EditStudent();
+                    Switcher.Switch(new AddStudentUserControl());
                     break;
-                case "5":
-                    DeleteStudent();
-                    break;
-                case "6":
-                    AddStudent();
-                    break;
-                case "7":
-                    SaveStudent();
-                    break;
+
             }
         }
 
-        private void SaveStudent()
-        {
-            throw new NotImplementedException();
-        }
 
-        private void AddStudent()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DeleteStudent()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EditStudent()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
