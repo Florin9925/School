@@ -11,12 +11,11 @@ namespace School.Models
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class GetMaterialsForStudent_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int id_material { get; set; }
+        public string link { get; set; }
+        public string type { get; set; }
+        public int fk_assignment { get; set; }
     }
 }

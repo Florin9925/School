@@ -28,17 +28,17 @@ namespace School.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Absence> Absences { get; set; }
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Assignment> Assignments { get; set; }
-        public DbSet<Class> Classes { get; set; }
-        public DbSet<Grade> Grades { get; set; }
-        public DbSet<Material> Materials { get; set; }
-        public DbSet<Person> People { get; set; }
+        public DbSet<Absence> Absence { get; set; }
+        public DbSet<Admin> Admin { get; set; }
+        public DbSet<Assignment> Assignment { get; set; }
+        public DbSet<Class> Class { get; set; }
+        public DbSet<Grade> Grade { get; set; }
+        public DbSet<Material> Material { get; set; }
+        public DbSet<Person> Person { get; set; }
         public DbSet<Situation_Subject> Situation_Subject { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Subject> Subjects { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Subject> Subject { get; set; }
+        public DbSet<Teacher> Teacher { get; set; }
         public DbSet<Teacher_Subject> Teacher_Subject { get; set; }
     
         public virtual int AddMaterial(Nullable<int> idMaterial, string type, Nullable<int> idAssignement)
@@ -56,31 +56,6 @@ namespace School.Models
                 new ObjectParameter("idAssignement", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddMaterial", idMaterialParameter, typeParameter, idAssignementParameter);
-        }
-    
-        public virtual int AdminAddClass(Nullable<int> idClass, string name, Nullable<int> year, string field, Nullable<int> fkClassmaster)
-        {
-            var idClassParameter = idClass.HasValue ?
-                new ObjectParameter("IdClass", idClass) :
-                new ObjectParameter("IdClass", typeof(int));
-    
-            var nameParameter = name != null ?
-                new ObjectParameter("Name", name) :
-                new ObjectParameter("Name", typeof(string));
-    
-            var yearParameter = year.HasValue ?
-                new ObjectParameter("Year", year) :
-                new ObjectParameter("Year", typeof(int));
-    
-            var fieldParameter = field != null ?
-                new ObjectParameter("Field", field) :
-                new ObjectParameter("Field", typeof(string));
-    
-            var fkClassmasterParameter = fkClassmaster.HasValue ?
-                new ObjectParameter("FkClassmaster", fkClassmaster) :
-                new ObjectParameter("FkClassmaster", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminAddClass", idClassParameter, nameParameter, yearParameter, fieldParameter, fkClassmasterParameter);
         }
     
         public virtual int AdminAddPerson(Nullable<int> idPerson, string firstName, string lastName, string username, string password)
@@ -205,15 +180,6 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminCreateTeacherSubject", idTeacherParameter, idSubjectParameter);
         }
     
-        public virtual int AdminDeleteClass(Nullable<int> idClass)
-        {
-            var idClassParameter = idClass.HasValue ?
-                new ObjectParameter("IdClass", idClass) :
-                new ObjectParameter("IdClass", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminDeleteClass", idClassParameter);
-        }
-    
         public virtual int AdminDeletePerson(Nullable<int> idPerson)
         {
             var idPersonParameter = idPerson.HasValue ?
@@ -263,11 +229,6 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminDeleteTeacherSubject", idTeacherParameter, idSubjectParameter);
         }
     
-        public virtual ObjectResult<AdminGetAllClasses_Result> AdminGetAllClasses()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdminGetAllClasses_Result>("AdminGetAllClasses");
-        }
-    
         public virtual ObjectResult<AdminGetAllStudents_Result> AdminGetAllStudents()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdminGetAllStudents_Result>("AdminGetAllStudents");
@@ -276,31 +237,6 @@ namespace School.Models
         public virtual ObjectResult<AdminGetAllTeachers_Result> AdminGetAllTeachers()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AdminGetAllTeachers_Result>("AdminGetAllTeachers");
-        }
-    
-        public virtual int AdminModifyClass(Nullable<int> idClass, string name, Nullable<int> year, string field, Nullable<int> fkClassmaster)
-        {
-            var idClassParameter = idClass.HasValue ?
-                new ObjectParameter("IdClass", idClass) :
-                new ObjectParameter("IdClass", typeof(int));
-    
-            var nameParameter = name != null ?
-                new ObjectParameter("Name", name) :
-                new ObjectParameter("Name", typeof(string));
-    
-            var yearParameter = year.HasValue ?
-                new ObjectParameter("Year", year) :
-                new ObjectParameter("Year", typeof(int));
-    
-            var fieldParameter = field != null ?
-                new ObjectParameter("Field", field) :
-                new ObjectParameter("Field", typeof(string));
-    
-            var fkClassmasterParameter = fkClassmaster.HasValue ?
-                new ObjectParameter("FkClassmaster", fkClassmaster) :
-                new ObjectParameter("FkClassmaster", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AdminModifyClass", idClassParameter, nameParameter, yearParameter, fieldParameter, fkClassmasterParameter);
         }
     
         public virtual int AdminModifyClassmaster(Nullable<int> idTeacher, Nullable<int> idClass)
@@ -422,7 +358,7 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Calculate_Result>("Calculate", idTeacherParameter, idStudentParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> CheckCredentials(string username, string password)
+        public virtual int CheckCredentials(string username, string password)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
@@ -432,7 +368,7 @@ namespace School.Models
                 new ObjectParameter("Password", password) :
                 new ObjectParameter("Password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CheckCredentials", usernameParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CheckCredentials", usernameParameter, passwordParameter);
         }
     
         public virtual int DeleteMaterial(Nullable<int> idMaterial)
@@ -563,13 +499,13 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAssignment", idTeacherParameter, idSubjectParameter, idClassParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> GetClassWhereMaster(Nullable<int> idTeacher)
+        public virtual int GetClassWhereMastert(Nullable<int> idTeacher)
         {
             var idTeacherParameter = idTeacher.HasValue ?
                 new ObjectParameter("idTeacher", idTeacher) :
                 new ObjectParameter("idTeacher", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetClassWhereMaster", idTeacherParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetClassWhereMastert", idTeacherParameter);
         }
     
         public virtual ObjectResult<GetExpelledStudent_Result> GetExpelledStudent(Nullable<int> idClass, Nullable<int> allowAbsences)
@@ -592,15 +528,6 @@ namespace School.Models
                 new ObjectParameter("idTeacher", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMaterials_Result>("GetMaterials", idTeacherParameter);
-        }
-    
-        public virtual ObjectResult<GetMaterialsForStudent_Result> GetMaterialsForStudent(Nullable<int> idStudent)
-        {
-            var idStudentParameter = idStudent.HasValue ?
-                new ObjectParameter("idStudent", idStudent) :
-                new ObjectParameter("idStudent", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMaterialsForStudent_Result>("GetMaterialsForStudent", idStudentParameter);
         }
     
         public virtual int GetSubject(string name, Nullable<int> term)
@@ -749,19 +676,6 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TeacherGetSituation", idTeacherParameter, idStudentParameter, nameParameter, termParameter);
         }
     
-        public virtual ObjectResult<TeacherGetStudentsBySubject_Result> TeacherGetStudentsBySubject(Nullable<int> idTeacher, Nullable<int> idSubject)
-        {
-            var idTeacherParameter = idTeacher.HasValue ?
-                new ObjectParameter("idTeacher", idTeacher) :
-                new ObjectParameter("idTeacher", typeof(int));
-    
-            var idSubjectParameter = idSubject.HasValue ?
-                new ObjectParameter("idSubject", idSubject) :
-                new ObjectParameter("idSubject", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TeacherGetStudentsBySubject_Result>("TeacherGetStudentsBySubject", idTeacherParameter, idSubjectParameter);
-        }
-    
         public virtual int TeacherJustifyAbsence(Nullable<int> idTeacher, Nullable<int> idStudent, Nullable<int> idSubject, Nullable<int> term, Nullable<int> idAbsence)
         {
             var idTeacherParameter = idTeacher.HasValue ?
@@ -864,13 +778,13 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewClassHierachy_Result>("ViewClassHierachy", idClassParameter);
         }
     
-        public virtual int ViewCorigentStudents(Nullable<int> idClassmaster)
+        public virtual ObjectResult<ViewCorigentStudents_Result> ViewCorigentStudents(Nullable<int> idClassmaster)
         {
             var idClassmasterParameter = idClassmaster.HasValue ?
                 new ObjectParameter("idClassmaster", idClassmaster) :
                 new ObjectParameter("idClassmaster", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ViewCorigentStudents", idClassmasterParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ViewCorigentStudents_Result>("ViewCorigentStudents", idClassmasterParameter);
         }
     }
 }

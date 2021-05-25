@@ -14,6 +14,7 @@ namespace School.Models
     public partial class GetMaterials_Result
     {
         public int id_material { get; set; }
+        public string link { get; set; }
         public string type { get; set; }
         public int fk_assignment { get; set; }
     }
