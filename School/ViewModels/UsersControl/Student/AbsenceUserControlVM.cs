@@ -23,7 +23,7 @@ namespace School.ViewModels.UsersControl.Student
         {
             Absences = new ObservableCollection<AbsenceVM>();
 
-            var temp = context.StudentViewAbsences(StudentUserControlVM.CURRENT_STUDENT);
+            var temp = context.GetAllAbsenceBySubject(StudentUserControlVM.CURRENT_SUBJECT, StudentUserControlVM.CURRENT_STUDENT);
             foreach (var absence in temp)
             {
                 Absences.Add(new AbsenceVM()

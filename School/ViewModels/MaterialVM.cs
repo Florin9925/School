@@ -11,7 +11,9 @@ namespace School.ViewModels
         public MaterialVM(Models.Material material)
         {
             _IdMaterial = material.id_material;
+            _Link = material.link;
             _Type = material.type;
+            _Assignment = material.fk_assignment;
         }
         public MaterialVM()
         {
@@ -37,6 +39,13 @@ namespace School.ViewModels
         {
             get => _Link;
             set => SetProperty(ref _Link, value);
+        }
+
+        private int _Assignment;
+        public int Assignment
+        {
+            get => _Assignment;
+            set => SetProperty(ref _Assignment, value);
         }
 
 

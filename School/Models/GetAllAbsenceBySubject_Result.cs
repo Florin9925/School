@@ -10,15 +10,17 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Material
+    public partial class GetAllAbsenceBySubject_Result
     {
-        public int id_material { get; set; }
-        public string link { get; set; }
-        public string type { get; set; }
-        public int fk_assignment { get; set; }
-    
-        public virtual Assignment Assignment { get; set; }
+        public int id_absence { get; set; }
+        public System.DateTime date { get; set; }
+        public bool is_justified { get; set; }
+        public bool can_be_justified { get; set; }
+        public int fk_student { get; set; }
+        public int fk_teacher_subject { get; set; }
+        public int id_teacher_subject { get; set; }
+        public int fk_teacher { get; set; }
+        public int fk_subject { get; set; }
     }
 }

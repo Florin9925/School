@@ -10,15 +10,12 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Material
+    public partial class GetMaterialsForStudent_Result
     {
         public int id_material { get; set; }
         public string link { get; set; }
         public string type { get; set; }
         public int fk_assignment { get; set; }
-    
-        public virtual Assignment Assignment { get; set; }
     }
 }

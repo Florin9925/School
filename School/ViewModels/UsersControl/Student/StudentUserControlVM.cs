@@ -31,8 +31,8 @@ namespace School.ViewModels.UsersControl.Student
             {
                 Subjects.Add(new SubjectVM()
                 {
-                    IdSubject = subject.id_subject, 
-                    Name = subject.name, 
+                    IdSubject = subject.id_subject,
+                    Name = subject.name,
                     Term = subject.term
                 }
                 );

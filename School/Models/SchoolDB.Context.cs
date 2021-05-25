@@ -38,6 +38,7 @@ namespace School.Models
         public DbSet<Situation_Subject> Situation_Subject { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Teacher_Subject> Teacher_Subject { get; set; }
     
@@ -453,6 +454,19 @@ namespace School.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("FindRole", idPersonParameter);
         }
     
+        public virtual ObjectResult<GetAllAbsenceBySubject_Result> GetAllAbsenceBySubject(Nullable<int> idSubject, Nullable<int> idStudent)
+        {
+            var idSubjectParameter = idSubject.HasValue ?
+                new ObjectParameter("idSubject", idSubject) :
+                new ObjectParameter("idSubject", typeof(int));
+    
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllAbsenceBySubject_Result>("GetAllAbsenceBySubject", idSubjectParameter, idStudentParameter);
+        }
+    
         public virtual ObjectResult<GetAllAbsencesFromClass_Result> GetAllAbsencesFromClass(Nullable<int> idTeacher)
         {
             var idTeacherParameter = idTeacher.HasValue ?
@@ -491,6 +505,19 @@ namespace School.Models
                 new ObjectParameter("tableName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAllFromTable", tableNameParameter);
+        }
+    
+        public virtual ObjectResult<GetAllGradesBySubject_Result> GetAllGradesBySubject(Nullable<int> idSubject, Nullable<int> idStudent)
+        {
+            var idSubjectParameter = idSubject.HasValue ?
+                new ObjectParameter("idSubject", idSubject) :
+                new ObjectParameter("idSubject", typeof(int));
+    
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllGradesBySubject_Result>("GetAllGradesBySubject", idSubjectParameter, idStudentParameter);
         }
     
         public virtual int GetAllStudentsInAClass(Nullable<int> idTeacher)
@@ -566,6 +593,15 @@ namespace School.Models
                 new ObjectParameter("idTeacher", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMaterials_Result>("GetMaterials", idTeacherParameter);
+        }
+    
+        public virtual ObjectResult<GetMaterialsForStudent_Result> GetMaterialsForStudent(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMaterialsForStudent_Result>("GetMaterialsForStudent", idStudentParameter);
         }
     
         public virtual int GetSubject(string name, Nullable<int> term)

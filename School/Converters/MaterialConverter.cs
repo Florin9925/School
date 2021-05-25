@@ -13,8 +13,8 @@ namespace School.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((values[0] != null && values[1] != null && values[2] != null) &&
-                (!values[0].Equals("") && !values[1].Equals("") && !values[2].Equals("")))
+            if ((values[0] != null && values[1] != null && values[2] != null && values[3] != null) &&
+                (!values[0].Equals("") && !values[1].Equals("") && !values[2].Equals("") && !values[3].Equals("")))
             {
                 return new MaterialVM()
                 {

@@ -73,7 +73,7 @@
                     Width="50" 
                     BorderThickness="0" />
                 <Label 
-                    Content="Name" 
+                    Content="Link" 
                     Height="31" 
                     Width="130" 
                     BorderThickness="0"/>
@@ -83,7 +83,7 @@
                     Width="100" 
                     BorderThickness="0"/>
                 <Label 
-                    Content="Link" 
+                    Content="Id Assignment" 
                     Height="31" 
                     Width="250" 
                     BorderThickness="0"/>
@@ -100,12 +100,12 @@
                     <DataTemplate>
                         <WrapPanel>
                             <TextBlock 
-                                Text="{Binding Id}" 
+                                Text="{Binding IdMaterial}" 
                                 Height="31" 
                                 Name="txtIdMaterial" 
                                 Width="50"/>
                             <TextBlock 
-                                Text="{Binding Name}" 
+                                Text="{Binding Link}" 
                                 Height="31" 
                                 Name="txtNameMaterial"  
                                 Width="130"/>
@@ -116,7 +116,7 @@
                                 Width="100"/>
                             <TextBlock 
                                 Name="txtLinkMaterial" 
-                                Text="{Binding Link}" 
+                                Text="{Binding Assignment}" 
                                 Height="31" 
                                 Width="250"/>
                         </WrapPanel>

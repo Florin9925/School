@@ -104,10 +104,16 @@
     <Compile Include="Models\Class.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAllAbsenceBySubject_Result.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetAllAbsencesFromClass_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetAllCompletedSituations_Result.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetAllGradesBySubject_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetAllTeacherSubject_Result.cs">
@@ -117,6 +123,9 @@
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetExpelledStudent_Result.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetMaterialsForStudent_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetMaterials_Result.cs">
@@ -171,6 +180,9 @@
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Teacher.cs">

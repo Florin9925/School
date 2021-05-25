@@ -23,13 +23,15 @@ namespace School.ViewModels.UsersControl.Student
         {
             Materials = new ObservableCollection<MaterialVM>();
 
-            var temp = context.GetMaterials(StudentUserControlVM.CURRENT_STUDENT);
+            var temp = context.GetMaterialsForStudent(StudentUserControlVM.CURRENT_STUDENT);
             foreach (var material in temp)
             {
                 Materials.Add(new MaterialVM()
                 {
                     IdMaterial = material.id_material,
-                    Type = material.type
+                    Link = material.link,
+                    Type = material.type,
+                    Assignment = material.fk_assignment
                 });
 
             }

@@ -23,7 +23,7 @@ namespace School.ViewModels.UsersControl.Student
         {
             Grades = new ObservableCollection<GradeVM>();
 
-            var temp = context.StudentViewGrades(StudentUserControlVM.CURRENT_STUDENT);
+            var temp = context.GetAllGradesBySubject(StudentUserControlVM.CURRENT_SUBJECT, StudentUserControlVM.CURRENT_STUDENT);
             foreach (var grade in temp)
             {
                 Grades.Add(new GradeVM()

@@ -10,15 +10,12 @@
 namespace School.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Material
+    public partial class GetAllGradesBySubject_Result
     {
-        public int id_material { get; set; }
-        public string link { get; set; }
-        public string type { get; set; }
-        public int fk_assignment { get; set; }
-    
-        public virtual Assignment Assignment { get; set; }
+        public int id_grade { get; set; }
+        public System.DateTime date { get; set; }
+        public int mark { get; set; }
+        public bool is_midterm { get; set; }
     }
 }
