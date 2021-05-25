@@ -56,7 +56,6 @@
             <PropertyRef Name="id_material" />
           </Key>
           <Property Name="id_material" Type="int" Nullable="false" />
-          <Property Name="link" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fk_assignment" Type="int" Nullable="false" />
         </EntityType>
@@ -97,16 +96,6 @@
           <Property Name="id_subject" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="term" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -255,9 +244,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Class">
-          <End Role="Class" Type="Self.Class" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
@@ -269,7 +256,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -281,7 +270,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teacher_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -325,13 +316,6 @@
           <Parameter Name="type" Type="varchar" Mode="In" />
           <Parameter Name="idAssignement" Type="int" Mode="In" />
         </Function>
-        <Function Name="AdminAddClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdClass" Type="int" Mode="In" />
-          <Parameter Name="Name" Type="varchar" Mode="In" />
-          <Parameter Name="Year" Type="int" Mode="In" />
-          <Parameter Name="Field" Type="varchar" Mode="In" />
-          <Parameter Name="FkClassmaster" Type="int" Mode="In" />
-        </Function>
         <Function Name="AdminAddPerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idPerson" Type="int" Mode="In" />
           <Parameter Name="firstName" Type="varchar" Mode="In" />
@@ -367,9 +351,6 @@
           <Parameter Name="idTeacher" Type="int" Mode="In" />
           <Parameter Name="idSubject" Type="int" Mode="In" />
         </Function>
-        <Function Name="AdminDeleteClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdClass" Type="int" Mode="In" />
-        </Function>
         <Function Name="AdminDeletePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idPerson" Type="int" Mode="In" />
         </Function>
@@ -386,16 +367,8 @@
           <Parameter Name="idTeacher" Type="int" Mode="In" />
           <Parameter Name="idSubject" Type="int" Mode="In" />
         </Function>
-        <Function Name="AdminGetAllClasses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="AdminGetAllStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="AdminGetAllTeachers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="AdminModifyClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdClass" Type="int" Mode="In" />
-          <Parameter Name="Name" Type="varchar" Mode="In" />
-          <Parameter Name="Year" Type="int" Mode="In" />
-          <Parameter Name="Field" Type="varchar" Mode="In" />
-          <Parameter Name="FkClassmaster" Type="int" Mode="In" />
-        </Function>
         <Function Name="AdminModifyClassmaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
           <Parameter Name="idClass" Type="int" Mode="In" />
@@ -441,7 +414,6 @@
         <Function Name="FindRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPerson" Type="int" Mode="In" />
         </Function>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="GetAllAbsenceBySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idSubject" Type="int" Mode="In" />
           <Parameter Name="idStudent" Type="int" Mode="In" />
@@ -477,7 +449,7 @@
           <Parameter Name="idSubject" Type="int" Mode="In" />
           <Parameter Name="idClass" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetClassWhereMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="GetClassWhereMastert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
         </Function>
         <Function Name="GetExpelledStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -486,9 +458,6 @@
         </Function>
         <Function Name="GetMaterials" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetMaterialsForStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idStudent" Type="int" Mode="In" />
         </Function>
         <Function Name="GetSubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar" Mode="In" />
@@ -534,10 +503,6 @@
           <Parameter Name="name" Type="varchar" Mode="In" />
           <Parameter Name="term" Type="int" Mode="In" />
         </Function>
-        <Function Name="TeacherGetStudentsBySubject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idTeacher" Type="int" Mode="In" />
-          <Parameter Name="idSubject" Type="int" Mode="In" />
-        </Function>
         <Function Name="TeacherJustifyAbsence" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idTeacher" Type="int" Mode="In" />
           <Parameter Name="idStudent" Type="int" Mode="In" />
@@ -582,7 +547,6 @@
           <EntitySet Name="Situation-Subject" EntityType="Self.Situation-Subject" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teacher-Subject" EntityType="Self.Teacher-Subject" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Absence_Student" Association="Self.FK_Absence_Student">
@@ -681,7 +645,7 @@
           <Property Name="fk_teacher_subject" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Class" Relationship="Self.FK_Assignment_Class" FromRole="Assignment" ToRole="Class" />
           <NavigationProperty Name="Teacher_Subject" Relationship="Self.FK_Assignment_Teacher_Subject" FromRole="Assignment" ToRole="Teacher_Subject" />
-          <NavigationProperty Name="Materials" Relationship="Self.FK_Material_Assignment" FromRole="Assignment" ToRole="Material" />
+          <NavigationProperty Name="Material" Relationship="Self.FK_Material_Assignment" FromRole="Assignment" ToRole="Material" />
         </EntityType>
         <EntityType Name="Class">
           <Key>
@@ -692,9 +656,9 @@
           <Property Name="year" Type="Int32" Nullable="false" />
           <Property Name="field" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fk_classmaster" Type="Int32" />
-          <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignment_Class" FromRole="Class" ToRole="Assignment" />
+          <NavigationProperty Name="Assignment" Relationship="Self.FK_Assignment_Class" FromRole="Class" ToRole="Assignment" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_Class_Teacher" FromRole="Class" ToRole="Teacher" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Student_Class" FromRole="Class" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Class" FromRole="Class" ToRole="Student" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -712,7 +676,6 @@
             <PropertyRef Name="id_material" />
           </Key>
           <Property Name="id_material" Type="Int32" Nullable="false" />
-          <Property Name="link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fk_assignment" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Assignment" Relationship="Self.FK_Material_Assignment" FromRole="Material" ToRole="Assignment" />
@@ -740,7 +703,7 @@
           <Property Name="final_grade" Type="Int32" Nullable="false" />
           <Property Name="fk_student" Type="Int32" Nullable="false" />
           <Property Name="fk_teacher_subject" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Grades" Relationship="Self.FK_Grade_Situation_Subject" FromRole="Situation_Subject" ToRole="Grade" />
+          <NavigationProperty Name="Grade" Relationship="Self.FK_Grade_Situation_Subject" FromRole="Situation_Subject" ToRole="Grade" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Situation_Subject_Student" FromRole="Situation_Subject" ToRole="Student" />
           <NavigationProperty Name="Teacher_Subject" Relationship="Self.FK_Situation_Subject_Teacher_Subject" FromRole="Situation_Subject" ToRole="Teacher_Subject" />
         </EntityType>
@@ -752,7 +715,7 @@
           <Property Name="is_debtor" Type="Boolean" />
           <Property Name="annual_grade" Type="Double" />
           <Property Name="fk_class" Type="Int32" />
-          <NavigationProperty Name="Absences" Relationship="Self.FK_Absence_Student" FromRole="Student" ToRole="Absence" />
+          <NavigationProperty Name="Absence" Relationship="Self.FK_Absence_Student" FromRole="Student" ToRole="Absence" />
           <NavigationProperty Name="Class" Relationship="Self.FK_Student_Class" FromRole="Student" ToRole="Class" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Student_Person" FromRole="Student" ToRole="Person" />
           <NavigationProperty Name="Situation_Subject" Relationship="Self.FK_Situation_Subject_Student" FromRole="Student" ToRole="Situation_Subject" />
@@ -766,22 +729,12 @@
           <Property Name="term" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Teacher_Subject" Relationship="Self.FK_Teacher_Subject_Subject" FromRole="Subject" ToRole="Teacher_Subject" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="id_teacher" />
           </Key>
           <Property Name="id_teacher" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Classes" Relationship="Self.FK_Class_Teacher" FromRole="Teacher" ToRole="Class" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_Class_Teacher" FromRole="Teacher" ToRole="Class" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Teacher_Person" FromRole="Teacher" ToRole="Person" />
           <NavigationProperty Name="Teacher_Subject" Relationship="Self.FK_Teacher_Subject_Teacher" FromRole="Teacher" ToRole="Teacher_Subject" />
         </EntityType>
@@ -792,8 +745,8 @@
           <Property Name="id_teacher_subject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fk_teacher" Type="Int32" Nullable="false" />
           <Property Name="fk_subject" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Absences" Relationship="Self.FK_Absence_Teacher_Subject" FromRole="Teacher_Subject" ToRole="Absence" />
-          <NavigationProperty Name="Assignments" Relationship="Self.FK_Assignment_Teacher_Subject" FromRole="Teacher_Subject" ToRole="Assignment" />
+          <NavigationProperty Name="Absence" Relationship="Self.FK_Absence_Teacher_Subject" FromRole="Teacher_Subject" ToRole="Absence" />
+          <NavigationProperty Name="Assignment" Relationship="Self.FK_Assignment_Teacher_Subject" FromRole="Teacher_Subject" ToRole="Assignment" />
           <NavigationProperty Name="Situation_Subject" Relationship="Self.FK_Situation_Subject_Teacher_Subject" FromRole="Teacher_Subject" ToRole="Situation_Subject" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Teacher_Subject_Subject" FromRole="Teacher_Subject" ToRole="Subject" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_Teacher_Subject_Teacher" FromRole="Teacher_Subject" ToRole="Teacher" />
@@ -891,9 +844,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Class">
-          <End Role="Class" Type="Self.Class" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Class">
@@ -919,7 +870,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -931,7 +884,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Teacher_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
@@ -997,65 +952,64 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SchoolDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Absences" EntityType="Self.Absence" />
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="Assignments" EntityType="Self.Assignment" />
-          <EntitySet Name="Classes" EntityType="Self.Class" />
-          <EntitySet Name="Grades" EntityType="Self.Grade" />
-          <EntitySet Name="Materials" EntityType="Self.Material" />
-          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Absence" EntityType="Self.Absence" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Assignment" EntityType="Self.Assignment" />
+          <EntitySet Name="Class" EntityType="Self.Class" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
           <EntitySet Name="Situation_Subject" EntityType="Self.Situation_Subject" />
-          <EntitySet Name="Students" EntityType="Self.Student" />
-          <EntitySet Name="Subjects" EntityType="Self.Subject" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
           <EntitySet Name="Teacher_Subject" EntityType="Self.Teacher_Subject" />
           <AssociationSet Name="FK_Absence_Student" Association="Self.FK_Absence_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Absence" EntitySet="Absences" />
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Absence" EntitySet="Absence" />
           </AssociationSet>
           <AssociationSet Name="FK_Absence_Teacher_Subject" Association="Self.FK_Absence_Teacher_Subject">
             <End Role="Teacher_Subject" EntitySet="Teacher_Subject" />
-            <End Role="Absence" EntitySet="Absences" />
+            <End Role="Absence" EntitySet="Absence" />
           </AssociationSet>
           <AssociationSet Name="FK_Admin_Person" Association="Self.FK_Admin_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Admin" EntitySet="Admin" />
           </AssociationSet>
           <AssociationSet Name="FK_Assignment_Class" Association="Self.FK_Assignment_Class">
-            <End Role="Class" EntitySet="Classes" />
-            <End Role="Assignment" EntitySet="Assignments" />
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Assignment" EntitySet="Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK_Assignment_Teacher_Subject" Association="Self.FK_Assignment_Teacher_Subject">
             <End Role="Teacher_Subject" EntitySet="Teacher_Subject" />
-            <End Role="Assignment" EntitySet="Assignments" />
+            <End Role="Assignment" EntitySet="Assignment" />
           </AssociationSet>
           <AssociationSet Name="FK_Material_Assignment" Association="Self.FK_Material_Assignment">
-            <End Role="Assignment" EntitySet="Assignments" />
-            <End Role="Material" EntitySet="Materials" />
+            <End Role="Assignment" EntitySet="Assignment" />
+            <End Role="Material" EntitySet="Material" />
           </AssociationSet>
           <AssociationSet Name="FK_Class_Teacher" Association="Self.FK_Class_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="Class" EntitySet="Classes" />
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Class" EntitySet="Class" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_Class" Association="Self.FK_Student_Class">
-            <End Role="Class" EntitySet="Classes" />
-            <End Role="Student" EntitySet="Students" />
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Grade_Situation_Subject" Association="Self.FK_Grade_Situation_Subject">
             <End Role="Situation_Subject" EntitySet="Situation_Subject" />
-            <End Role="Grade" EntitySet="Grades" />
+            <End Role="Grade" EntitySet="Grade" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_Person" Association="Self.FK_Student_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Student" EntitySet="Students" />
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Teacher_Person" Association="Self.FK_Teacher_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Teacher" EntitySet="Teacher" />
           </AssociationSet>
           <AssociationSet Name="FK_Situation_Subject_Student" Association="Self.FK_Situation_Subject_Student">
-            <End Role="Student" EntitySet="Students" />
+            <End Role="Student" EntitySet="Student" />
             <End Role="Situation_Subject" EntitySet="Situation_Subject" />
           </AssociationSet>
           <AssociationSet Name="FK_Situation_Subject_Teacher_Subject" Association="Self.FK_Situation_Subject_Teacher_Subject">
@@ -1063,24 +1017,17 @@
             <End Role="Situation_Subject" EntitySet="Situation_Subject" />
           </AssociationSet>
           <AssociationSet Name="FK_Teacher_Subject_Subject" Association="Self.FK_Teacher_Subject_Subject">
-            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Subject" EntitySet="Subject" />
             <End Role="Teacher_Subject" EntitySet="Teacher_Subject" />
           </AssociationSet>
           <AssociationSet Name="FK_Teacher_Subject_Teacher" Association="Self.FK_Teacher_Subject_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Teacher_Subject" EntitySet="Teacher_Subject" />
           </AssociationSet>
           <FunctionImport Name="AddMaterial">
             <Parameter Name="idMaterial" Mode="In" Type="Int32" />
             <Parameter Name="type" Mode="In" Type="String" />
             <Parameter Name="idAssignement" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AdminAddClass">
-            <Parameter Name="IdClass" Mode="In" Type="Int32" />
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="Year" Mode="In" Type="Int32" />
-            <Parameter Name="Field" Mode="In" Type="String" />
-            <Parameter Name="FkClassmaster" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AdminAddPerson">
             <Parameter Name="idPerson" Mode="In" Type="Int32" />
@@ -1117,9 +1064,6 @@
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
             <Parameter Name="idSubject" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="AdminDeleteClass">
-            <Parameter Name="IdClass" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="AdminDeletePerson">
             <Parameter Name="idPerson" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1136,16 +1080,8 @@
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
             <Parameter Name="idSubject" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="AdminGetAllClasses" ReturnType="Collection(SchoolDBModel.AdminGetAllClasses_Result)" />
           <FunctionImport Name="AdminGetAllStudents" ReturnType="Collection(SchoolDBModel.AdminGetAllStudents_Result)" />
           <FunctionImport Name="AdminGetAllTeachers" ReturnType="Collection(SchoolDBModel.AdminGetAllTeachers_Result)" />
-          <FunctionImport Name="AdminModifyClass">
-            <Parameter Name="IdClass" Mode="In" Type="Int32" />
-            <Parameter Name="Name" Mode="In" Type="String" />
-            <Parameter Name="Year" Mode="In" Type="Int32" />
-            <Parameter Name="Field" Mode="In" Type="String" />
-            <Parameter Name="FkClassmaster" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="AdminModifyClassmaster">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
             <Parameter Name="idClass" Mode="In" Type="Int32" />
@@ -1181,7 +1117,7 @@
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
             <Parameter Name="idStudent" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CheckCredentials" ReturnType="Collection(Int32)">
+          <FunctionImport Name="CheckCredentials">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
@@ -1226,7 +1162,7 @@
             <Parameter Name="idSubject" Mode="In" Type="Int32" />
             <Parameter Name="idClass" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetClassWhereMaster" ReturnType="Collection(Int32)">
+          <FunctionImport Name="GetClassWhereMastert">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetExpelledStudent" ReturnType="Collection(SchoolDBModel.GetExpelledStudent_Result)">
@@ -1235,9 +1171,6 @@
           </FunctionImport>
           <FunctionImport Name="GetMaterials" ReturnType="Collection(SchoolDBModel.GetMaterials_Result)">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetMaterialsForStudent" ReturnType="Collection(SchoolDBModel.GetMaterialsForStudent_Result)">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetSubject">
             <Parameter Name="name" Mode="In" Type="String" />
@@ -1283,10 +1216,6 @@
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="term" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="TeacherGetStudentsBySubject" ReturnType="Collection(SchoolDBModel.TeacherGetStudentsBySubject_Result)">
-            <Parameter Name="idTeacher" Mode="In" Type="Int32" />
-            <Parameter Name="idSubject" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="TeacherJustifyAbsence">
             <Parameter Name="idTeacher" Mode="In" Type="Int32" />
             <Parameter Name="idStudent" Mode="In" Type="Int32" />
@@ -1317,17 +1246,10 @@
           <FunctionImport Name="ViewClassHierachy" ReturnType="Collection(SchoolDBModel.ViewClassHierachy_Result)">
             <Parameter Name="IdClass" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ViewCorigentStudents">
+          <FunctionImport Name="ViewCorigentStudents" ReturnType="Collection(SchoolDBModel.ViewCorigentStudents_Result)">
             <Parameter Name="idClassmaster" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="AdminGetAllClasses_Result">
-          <Property Type="Int32" Name="id_class" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="3" />
-          <Property Type="Int32" Name="year" Nullable="false" />
-          <Property Type="String" Name="field" Nullable="false" MaxLength="60" />
-          <Property Type="Int32" Name="fk_classmaster" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="AdminGetAllStudents_Result">
           <Property Type="Int32" Name="id_person" Nullable="false" />
           <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
@@ -1356,11 +1278,6 @@
           <Property Type="DateTime" Name="date" Nullable="false" />
           <Property Type="Boolean" Name="is_justified" Nullable="false" />
           <Property Type="Boolean" Name="can_be_justified" Nullable="false" />
-          <Property Type="Int32" Name="fk_student" Nullable="false" />
-          <Property Type="Int32" Name="fk_teacher_subject" Nullable="false" />
-          <Property Type="Int32" Name="id_teacher_subject" Nullable="false" />
-          <Property Type="Int32" Name="fk_teacher" Nullable="false" />
-          <Property Type="Int32" Name="fk_subject" Nullable="false" />
         </ComplexType>
         <ComplexType Name="GetAllAbsencesFromClass_Result">
           <Property Type="Int32" Name="id_absence" Nullable="false" />
@@ -1393,11 +1310,6 @@
           <Property Type="Boolean" Name="is_debtor" Nullable="true" />
           <Property Type="Double" Name="annual_grade" Nullable="true" />
           <Property Type="Int32" Name="fk_class" Nullable="true" />
-          <Property Type="Int32" Name="id_person" Nullable="false" />
-          <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="last_name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="username" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="GetAllTeacherSubject_Result">
           <Property Type="Int32" Name="id_subject" Nullable="false" />
@@ -1426,13 +1338,6 @@
         </ComplexType>
         <ComplexType Name="GetMaterials_Result">
           <Property Type="Int32" Name="id_material" Nullable="false" />
-          <Property Type="String" Name="link" Nullable="false" MaxLength="1000" />
-          <Property Type="String" Name="type" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="fk_assignment" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="GetMaterialsForStudent_Result">
-          <Property Type="Int32" Name="id_material" Nullable="false" />
-          <Property Type="String" Name="link" Nullable="false" MaxLength="1000" />
           <Property Type="String" Name="type" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="fk_assignment" Nullable="false" />
         </ComplexType>
@@ -1461,14 +1366,6 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="60" />
           <Property Type="Int32" Name="term" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="TeacherGetStudentsBySubject_Result">
-          <Property Type="Int32" Name="id_student" Nullable="false" />
-          <Property Type="String" Name="first_name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="last_name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="username" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="password" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="fk_class" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="TeacherViewAllAbsence_Result">
           <Property Type="Int32" Name="id_absence" Nullable="false" />
           <Property Type="DateTime" Name="date" Nullable="false" />
@@ -1489,13 +1386,17 @@
           <Property Type="Double" Name="annual_grade" Nullable="true" />
           <Property Type="Int32" Name="fk_class" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="ViewCorigentStudents_Result">
+          <Property Type="Int32" Name="fk_student" Nullable="false" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SchoolDBModelStoreContainer" CdmEntityContainer="SchoolDBEntities">
-          <EntitySetMapping Name="Absences">
+          <EntitySetMapping Name="Absence">
             <EntityTypeMapping TypeName="SchoolDBModel.Absence">
               <MappingFragment StoreEntitySet="Absence">
                 <ScalarProperty Name="id_absence" ColumnName="id_absence" />
@@ -1507,14 +1408,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Admins">
+          <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="SchoolDBModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="id_admin" ColumnName="id_admin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Assignments">
+          <EntitySetMapping Name="Assignment">
             <EntityTypeMapping TypeName="SchoolDBModel.Assignment">
               <MappingFragment StoreEntitySet="Assignment">
                 <ScalarProperty Name="id_assignment" ColumnName="id_assignment" />
@@ -1524,7 +1425,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Classes">
+          <EntitySetMapping Name="Class">
             <EntityTypeMapping TypeName="SchoolDBModel.Class">
               <MappingFragment StoreEntitySet="Class">
                 <ScalarProperty Name="id_class" ColumnName="id_class" />
@@ -1535,7 +1436,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Grades">
+          <EntitySetMapping Name="Grade">
             <EntityTypeMapping TypeName="SchoolDBModel.Grade">
               <MappingFragment StoreEntitySet="Grade">
                 <ScalarProperty Name="id_grade" ColumnName="id_grade" />
@@ -1546,17 +1447,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Materials">
+          <EntitySetMapping Name="Material">
             <EntityTypeMapping TypeName="SchoolDBModel.Material">
               <MappingFragment StoreEntitySet="Material">
                 <ScalarProperty Name="id_material" ColumnName="id_material" />
-                <ScalarProperty Name="link" ColumnName="link" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="fk_assignment" ColumnName="fk_assignment" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="People">
+          <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="SchoolDBModel.Person">
               <MappingFragment StoreEntitySet="Person">
                 <ScalarProperty Name="id_person" ColumnName="id_person" />
@@ -1579,7 +1479,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Students">
+          <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="SchoolDBModel.Student">
               <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="id_student" ColumnName="id_student" />
@@ -1589,7 +1489,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Subjects">
+          <EntitySetMapping Name="Subject">
             <EntityTypeMapping TypeName="SchoolDBModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
                 <ScalarProperty Name="id_subject" ColumnName="id_subject" />
@@ -1598,18 +1498,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SchoolDBModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Teachers">
+          <EntitySetMapping Name="Teacher">
             <EntityTypeMapping TypeName="SchoolDBModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
                 <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
@@ -1626,30 +1515,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AddMaterial" FunctionName="SchoolDBModel.Store.AddMaterial" />
-          <FunctionImportMapping FunctionImportName="AdminAddClass" FunctionName="SchoolDBModel.Store.AdminAddClass" />
           <FunctionImportMapping FunctionImportName="AdminAddPerson" FunctionName="SchoolDBModel.Store.AdminAddPerson" />
           <FunctionImportMapping FunctionImportName="AdminAddStudent" FunctionName="SchoolDBModel.Store.AdminAddStudent" />
           <FunctionImportMapping FunctionImportName="AdminAddStudentWithPerson" FunctionName="SchoolDBModel.Store.AdminAddStudentWithPerson" />
           <FunctionImportMapping FunctionImportName="AdminAddSubject" FunctionName="SchoolDBModel.Store.AdminAddSubject" />
           <FunctionImportMapping FunctionImportName="AdminAddTeacher" FunctionName="SchoolDBModel.Store.AdminAddTeacher" />
           <FunctionImportMapping FunctionImportName="AdminCreateTeacherSubject" FunctionName="SchoolDBModel.Store.AdminCreateTeacherSubject" />
-          <FunctionImportMapping FunctionImportName="AdminDeleteClass" FunctionName="SchoolDBModel.Store.AdminDeleteClass" />
           <FunctionImportMapping FunctionImportName="AdminDeletePerson" FunctionName="SchoolDBModel.Store.AdminDeletePerson" />
           <FunctionImportMapping FunctionImportName="AdminDeleteStudent" FunctionName="SchoolDBModel.Store.AdminDeleteStudent" />
           <FunctionImportMapping FunctionImportName="AdminDeleteSubject" FunctionName="SchoolDBModel.Store.AdminDeleteSubject" />
           <FunctionImportMapping FunctionImportName="AdminDeleteTeacher" FunctionName="SchoolDBModel.Store.AdminDeleteTeacher" />
           <FunctionImportMapping FunctionImportName="AdminDeleteTeacherSubject" FunctionName="SchoolDBModel.Store.AdminDeleteTeacherSubject" />
-          <FunctionImportMapping FunctionImportName="AdminGetAllClasses" FunctionName="SchoolDBModel.Store.AdminGetAllClasses">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SchoolDBModel.AdminGetAllClasses_Result">
-                <ScalarProperty Name="id_class" ColumnName="id_class" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="year" ColumnName="year" />
-                <ScalarProperty Name="field" ColumnName="field" />
-                <ScalarProperty Name="fk_classmaster" ColumnName="fk_classmaster" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AdminGetAllStudents" FunctionName="SchoolDBModel.Store.AdminGetAllStudents">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SchoolDBModel.AdminGetAllStudents_Result">
@@ -1673,7 +1549,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AdminModifyClass" FunctionName="SchoolDBModel.Store.AdminModifyClass" />
           <FunctionImportMapping FunctionImportName="AdminModifyClassmaster" FunctionName="SchoolDBModel.Store.AdminModifyClassmaster" />
           <FunctionImportMapping FunctionImportName="AdminModifyPerson" FunctionName="SchoolDBModel.Store.AdminModifyPerson" />
           <FunctionImportMapping FunctionImportName="AdminModifyStudent" FunctionName="SchoolDBModel.Store.AdminModifyStudent" />
@@ -1702,11 +1577,6 @@
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="is_justified" ColumnName="is_justified" />
                 <ScalarProperty Name="can_be_justified" ColumnName="can_be_justified" />
-                <ScalarProperty Name="fk_student" ColumnName="fk_student" />
-                <ScalarProperty Name="fk_teacher_subject" ColumnName="fk_teacher_subject" />
-                <ScalarProperty Name="id_teacher_subject" ColumnName="id_teacher_subject" />
-                <ScalarProperty Name="fk_teacher" ColumnName="fk_teacher" />
-                <ScalarProperty Name="fk_subject" ColumnName="fk_subject" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1757,11 +1627,6 @@
                 <ScalarProperty Name="is_debtor" ColumnName="is_debtor" />
                 <ScalarProperty Name="annual_grade" ColumnName="annual_grade" />
                 <ScalarProperty Name="fk_class" ColumnName="fk_class" />
-                <ScalarProperty Name="id_person" ColumnName="id_person" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1794,7 +1659,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAssignment" FunctionName="SchoolDBModel.Store.GetAssignment" />
-          <FunctionImportMapping FunctionImportName="GetClassWhereMaster" FunctionName="SchoolDBModel.Store.GetClassWhereMaster" />
+          <FunctionImportMapping FunctionImportName="GetClassWhereMastert" FunctionName="SchoolDBModel.Store.GetClassWhereMastert" />
           <FunctionImportMapping FunctionImportName="GetExpelledStudent" FunctionName="SchoolDBModel.Store.GetExpelledStudent">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SchoolDBModel.GetExpelledStudent_Result">
@@ -1808,17 +1673,6 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="SchoolDBModel.GetMaterials_Result">
                 <ScalarProperty Name="id_material" ColumnName="id_material" />
-                <ScalarProperty Name="link" ColumnName="link" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="fk_assignment" ColumnName="fk_assignment" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetMaterialsForStudent" FunctionName="SchoolDBModel.Store.GetMaterialsForStudent">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SchoolDBModel.GetMaterialsForStudent_Result">
-                <ScalarProperty Name="id_material" ColumnName="id_material" />
-                <ScalarProperty Name="link" ColumnName="link" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="fk_assignment" ColumnName="fk_assignment" />
               </ComplexTypeMapping>
@@ -1871,18 +1725,6 @@
           <FunctionImportMapping FunctionImportName="TeacherAddGrade" FunctionName="SchoolDBModel.Store.TeacherAddGrade" />
           <FunctionImportMapping FunctionImportName="TeacherDeleteGrade" FunctionName="SchoolDBModel.Store.TeacherDeleteGrade" />
           <FunctionImportMapping FunctionImportName="TeacherGetSituation" FunctionName="SchoolDBModel.Store.TeacherGetSituation" />
-          <FunctionImportMapping FunctionImportName="TeacherGetStudentsBySubject" FunctionName="SchoolDBModel.Store.TeacherGetStudentsBySubject">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SchoolDBModel.TeacherGetStudentsBySubject_Result">
-                <ScalarProperty Name="id_student" ColumnName="id_student" />
-                <ScalarProperty Name="first_name" ColumnName="first_name" />
-                <ScalarProperty Name="last_name" ColumnName="last_name" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="fk_class" ColumnName="fk_class" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="TeacherJustifyAbsence" FunctionName="SchoolDBModel.Store.TeacherJustifyAbsence" />
           <FunctionImportMapping FunctionImportName="TeacherSelectGradeAfterStudent" FunctionName="SchoolDBModel.Store.TeacherSelectGradeAfterStudent" />
           <FunctionImportMapping FunctionImportName="TeacherUpdateSituation" FunctionName="SchoolDBModel.Store.TeacherUpdateSituation" />
@@ -1918,7 +1760,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ViewCorigentStudents" FunctionName="SchoolDBModel.Store.ViewCorigentStudents" />
+          <FunctionImportMapping FunctionImportName="ViewCorigentStudents" FunctionName="SchoolDBModel.Store.ViewCorigentStudents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SchoolDBModel.ViewCorigentStudents_Result">
+                <ScalarProperty Name="fk_student" ColumnName="fk_student" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1933,7 +1782,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

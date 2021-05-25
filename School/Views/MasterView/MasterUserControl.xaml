@@ -95,7 +95,7 @@
                 <Label 
                     Content="Date" 
                     Height="31" 
-                    Width="70" 
+                    Width="165" 
                     BorderThickness="0"/>
                 <Label 
                     Content="Is justify" 
@@ -107,11 +107,7 @@
                     Height="31" 
                     Width="70" 
                     BorderThickness="0"/>
-                <Label 
-                    Content="Term" 
-                    Height="31" 
-                    Width="70" 
-                    BorderThickness="0"/>
+         
 
 
             </WrapPanel>
@@ -120,36 +116,31 @@
             Grid.ColumnSpan="4" 
             Name="listAbsences" 
             ItemsSource="{Binding Absences}"
+            SelectedItem="{Binding SelectedAbsence, Mode=TwoWay}"
             Width="350" Height="170">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBox
+                            <TextBlock
                             Name="txtIdAbsence"
-                            Text="{Binding Id}"
+                            Text="{Binding IdAbsence}"
                             Height="31"
                             Width="40"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtDateAbsence"  
                             Text="{Binding Date}" 
                             Height="31" 
                             Width="70"/>
-                            <TextBox
+                            <TextBlock
                             Name="txtIsJustifyAbsence" 
-                            Text="{Binding IsJustify}"
+                            Text="{Binding IsJustified}"
                             Height="31" 
                             Width="70"/>
-                            <TextBox
+                            <TextBlock
                             Name="txtCanJustifyAbsence" 
-                            Text="{Binding CanJustify}"
+                            Text="{Binding CanBeJustified}"
                             Height="31" 
                             Width="70"/>
-                            <TextBox
-                            Name="txtTermAbsence" 
-                            Text="{Binding CanJustify}"
-                            Height="31" 
-                            Width="70"/>
-
                         </WrapPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -207,29 +198,30 @@
             Grid.Row ="2"  
             Grid.ColumnSpan="4" 
             Name="listStudents"
-            ItemsSource="{Binding Teachers}"
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
             Width="350" Height="220">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBox
+                            <TextBlock
                             Name="txtIdStudent"
                             Text="{Binding Id}"
                             Height="31"
                             Width="40"/>
-                            <TextBox 
+                            <TextBlock 
                             Name="txtFirstNameStudent"  
-                            Text="{Binding FirstName}" 
+                            Text="{Binding Person.FirstName}" 
                             Height="31" 
                             Width="90"/>
-                            <TextBox
+                            <TextBlock
                             Name="txtLastNameStudent" 
-                            Text="{Binding LastName}"
+                            Text="{Binding Person.LastName}"
                             Height="31" 
                             Width="90"/>
-                            <TextBox
+                            <TextBlock
                             Name="txtSituationStudent" 
-                            Text="{Binding Situation}"
+                            Text="{Binding AnnualGrade}"
                             Height="31" 
                             Width="90"/>
 
@@ -240,7 +232,7 @@
         </WrapPanel>
 
 
-       
+
 
         <StackPanel 
             Grid.Row="4"
@@ -267,7 +259,7 @@
                 Height="25"
                 Margin="0,25,0,0" 
                 Width="170" 
-                Command="{Binding OpenUserControlCommand}"
+                Command="{Binding LoadAbsences}"
                 CommandParameter="12"/>
             <Button
                 Content="All unjustified absences"
@@ -277,7 +269,7 @@
                 Command="{Binding OpenUserControlCommand}"
                 CommandParameter="13"/>
         </StackPanel>
-        
+
         <StackPanel 
             Grid.Row="2"
             Grid.Column="0"
@@ -289,7 +281,7 @@
                 Height="25"
                 Margin="0,10,0,0" 
                 Width="170" 
-                Command="{Binding OpenUserControlCommand}"
+                Command="{Binding LoadStudents}"
                 CommandParameter="4"/>
             <Button
                 Content="Student term situation"
@@ -352,7 +344,7 @@
                 FontStretch="ExtraCondensed"
                 Width="Auto"
                 Margin="10"/>
-            
+
         </StackPanel>
 
     </Grid>

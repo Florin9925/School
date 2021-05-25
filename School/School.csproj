@@ -116,6 +116,9 @@
     <Compile Include="Models\GetAllGradesBySubject_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAllStudentsInAClass_Result.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetAllTeacherSubject_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
@@ -158,12 +161,6 @@
     <Compile Include="Models\Situation_Subject.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>SchoolDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>SchoolDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Student.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
@@ -186,6 +183,9 @@
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Teacher.cs">
+      <DependentUpon>SchoolDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeacherGetStudentsBySubject_Result.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TeacherViewAllAbsence_Result.cs">
