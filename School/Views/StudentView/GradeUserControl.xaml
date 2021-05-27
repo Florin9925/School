@@ -114,7 +114,7 @@
                             Width="130"/>
                             <TextBlock
                             Name="txtIsMidtermGrade" 
-                            Text="{Binding IsMidterm}"
+                            Text="{Binding Midterm}"
                             Height="31" 
                             Width="130"/>
 

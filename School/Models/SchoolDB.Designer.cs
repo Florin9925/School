@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Info Unitbv 2020-2021\Semestrul II\MVP\Laborator\School\School\Models\SchoolDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\adita\Documents\GitHub\School\School\Models\SchoolDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

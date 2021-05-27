@@ -11,13 +11,12 @@ namespace School.Models
 {
     using System;
     
-    public partial class TeacherGetStudentsBySubject_Result
+    public partial class sp_helpdiagrams_Result
     {
-        public int id_student { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public Nullable<int> fk_class { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }
